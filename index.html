@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Isma | Portfolio</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <nav>
+      <div class="logo">Isma</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-greeting">Hi, I'm</p>
+      <h1>Isma</h1>
+      <p class="hero-tagline">Developer &amp; Designer</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-img">
+          <img src="assets/images/profile.jpg" alt="Isma" onerror="this.style.display='none'" />
+        </div>
+        <div class="about-text">
+          <p>
+            I'm a passionate developer who loves building clean, user-friendly
+            experiences. I enjoy turning ideas into reality through code.
+          </p>
+          <p>
+            When I'm not coding, you'll find me exploring new technologies,
+            contributing to open source, or working on side projects.
+          </p>
+          <a href="assets/resume.pdf" class="btn btn-outline" target="_blank">Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">HTML</div>
+        <div class="skill-card">CSS</div>
+        <div class="skill-card">JavaScript</div>
+        <div class="skill-card">React</div>
+        <div class="skill-card">Node.js</div>
+        <div class="skill-card">Git</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-img"></div>
+          <div class="project-info">
+            <h3>Project One</h3>
+            <p>A short description of what this project does and the tech used.</p>
+            <div class="project-links">
+              <a href="#" class="btn btn-sm">Live</a>
+              <a href="#" class="btn btn-sm btn-outline">Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img"></div>
+          <div class="project-info">
+            <h3>Project Two</h3>
+            <p>A short description of what this project does and the tech used.</p>
+            <div class="project-links">
+              <a href="#" class="btn btn-sm">Live</a>
+              <a href="#" class="btn btn-sm btn-outline">Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img"></div>
+          <div class="project-info">
+            <h3>Project Three</h3>
+            <p>A short description of what this project does and the tech used.</p>
+            <div class="project-links">
+              <a href="#" class="btn btn-sm">Live</a>
+              <a href="#" class="btn btn-sm btn-outline">Code</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="contact-sub">Have a project in mind? Let's talk.</p>
+      <form class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Isma. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#" aria-label="GitHub">GitHub</a>
+      <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      <a href="#" aria-label="Twitter">Twitter</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
