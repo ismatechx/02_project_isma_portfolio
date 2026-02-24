@@ -29,16 +29,47 @@
 
   <!-- HERO -->
   <section id="hero">
+
+    <!-- Animated background orbs -->
+    <div class="hero-orb hero-orb--1"></div>
+    <div class="hero-orb hero-orb--2"></div>
+    <div class="hero-orb hero-orb--3"></div>
+
+    <!-- Floating data cards -->
+    <div class="float-card float-card--tl">
+      <div class="float-card-label">Report Turnaround</div>
+      <div class="float-card-value">&#8595; 25%</div>
+    </div>
+    <div class="float-card float-card--tr">
+      <div class="float-card-label">Operational Efficiency</div>
+      <div class="float-card-value">&#8593; 15%</div>
+    </div>
+    <div class="float-card float-card--bl">
+      <div class="float-card-label">Years Experience</div>
+      <div class="float-card-value">5+</div>
+    </div>
+    <div class="float-card float-card--br">
+      <div class="float-card-label">Certifications</div>
+      <div class="float-card-value">4 &#127941;</div>
+    </div>
+
     <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Currently at Zuci Systems, USA
+      </div>
       <p class="hero-greeting">Hi, I'm</p>
       <h1>Ismail Uthuman</h1>
-      <p class="hero-tagline">Senior Business Intelligence Analyst</p>
-      <p class="hero-location">&#128205; Chennai, India</p>
+      <p class="hero-tagline">
+        <span class="typewriter" data-words='["BI Analyst","Tableau Expert","Power BI Developer","Data Storyteller"]'></span>
+      </p>
+      <p class="hero-location">&#128205; New Jersey, USA</p>
       <div class="hero-btns">
         <a href="#projects" class="btn">View My Work</a>
-        <a href="Ismail_CV.docx" class="btn btn-outline" download>Download CV</a>
+        <a href="Ismail_resume.pdf" class="btn btn-outline" download>Download CV</a>
       </div>
     </div>
+
     <div class="scroll-indicator">Scroll</div>
   </section>
 
@@ -48,7 +79,7 @@
       <h2 class="section-title">About Me</h2>
       <div class="about-grid reveal">
         <div class="about-img">
-          <img src="assets/images/profile.jpg" alt="Ismail Uthuman" onerror="this.style.display='none'" />
+          <img src="assets/images/1740663916182.jpeg" alt="Ismail Uthuman" />
         </div>
         <div class="about-text">
           <p>
@@ -127,15 +158,32 @@
           <div class="timeline-content">
             <div class="timeline-header">
               <h3>Senior Business Intelligence Analyst</h3>
-              <span class="timeline-date">Mar 2021 – Present</span>
+              <span class="timeline-date">Jun 2025 – Present</span>
+            </div>
+            <p class="timeline-company">Zuci Systems, USA</p>
+            <ul>
+              <li>Designed and developed dashboards in Power BI using data extracted from patient insurance documents, incorporating member details, service codes, and diagnosis codes.</li>
+              <li>Collaborated with business stakeholders to define required fields and post-processing logic; performed validation testing for keyword accuracy and correct value inputs.</li>
+              <li>Created automated validation reports in Power BI to reduce manual day-to-day data reconciliation between source and target layers.</li>
+              <li>Reviewed generated reports and conducted accuracy validations to ensure data integrity and consistency between systems.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Senior Business Intelligence Analyst</h3>
+              <span class="timeline-date">Mar 2021 – May 2025</span>
             </div>
             <p class="timeline-company">Zuci Systems, India</p>
             <ul>
               <li>Developed Tableau dashboards that reduced report turnaround time by <strong>25%</strong> and improved decision speed.</li>
-              <li>Collaborated with cross-functional teams to deliver end-to-end BI solutions, contributing to a <strong>15% increase</strong> in operational efficiency.</li>
+              <li>Collaborated with cross-functional Supply Operation, Finance, and HPMT teams, contributing to a <strong>15% increase</strong> in operational efficiency.</li>
+              <li>Built Supplier KPI, Actual vs Forecast, and Capability Matrices, enabling sourcing teams to monitor vendor performance and delivery timeliness (OTIF).</li>
+              <li>Led a team of 2 to design and develop the ISMS Risk Dashboard in Power BI with RLS, delivering dashboards with risk trends, asset/threat analysis, and KPIs.</li>
               <li>Worked on Supply Operations, Strategic Sourcing, Procurement, IT Spend Analysis and End-to-End Supply Operation (16 KPI &amp; Detailed View) dashboards.</li>
-              <li>Streamlined data processing workflows, reducing manual analysis by several hours per week.</li>
-              <li>Performed data cleaning and transformation using Tableau Prep and created scorecards, dashboards with stacked bars, maps, scatter plots, and more.</li>
             </ul>
           </div>
         </div>
@@ -211,12 +259,12 @@
         <div class="project-card reveal">
           <div class="project-img project-img--cx"></div>
           <div class="project-info">
-            <h3>Customer Service Analytics</h3>
-            <p>BI dashboards providing actionable insights on agent performance, ticket analysis, response times, and ticket aging trends for enterprise clients.</p>
+            <h3>ISMS Risk Dashboard</h3>
+            <p>Power BI dashboard with RLS delivering risk trends, asset/threat analysis, and department KPIs to enhance compliance monitoring and executive visibility.</p>
             <div class="project-tags">
-              <span class="tag">Tableau</span>
-              <span class="tag">MS SQL Server</span>
               <span class="tag">Power BI</span>
+              <span class="tag">RLS</span>
+              <span class="tag">MS SQL Server</span>
             </div>
           </div>
         </div>
@@ -234,28 +282,28 @@
         <div class="cert-col">
           <h3 class="sub-heading">Certifications</h3>
           <div class="cert-list">
-            <div class="cert-card">
+            <div class="cert-card reveal">
               <div class="cert-icon">&#127941;</div>
               <div>
                 <p class="cert-name">Microsoft Fabric Analytics Engineer Associate</p>
                 <p class="cert-date">Jan 2025</p>
               </div>
             </div>
-            <div class="cert-card">
+            <div class="cert-card reveal">
+              <div class="cert-icon">&#127941;</div>
+              <div>
+                <p class="cert-name">Microsoft Azure Data Engineer</p>
+                <p class="cert-date">Aug 2022</p>
+              </div>
+            </div>
+            <div class="cert-card reveal">
               <div class="cert-icon">&#127941;</div>
               <div>
                 <p class="cert-name">Tableau Desktop Specialist</p>
                 <p class="cert-date">Jul 2021</p>
               </div>
             </div>
-            <div class="cert-card">
-              <div class="cert-icon">&#127941;</div>
-              <div>
-                <p class="cert-name">Microsoft Azure Data Engineer</p>
-                <p class="cert-date">Jul 2021</p>
-              </div>
-            </div>
-            <div class="cert-card">
+            <div class="cert-card reveal">
               <div class="cert-icon">&#127941;</div>
               <div>
                 <p class="cert-name">Microsoft Azure Data Fundamentals</p>
@@ -268,28 +316,28 @@
         <div class="cert-col">
           <h3 class="sub-heading">Awards</h3>
           <div class="cert-list">
-            <div class="cert-card">
+            <div class="cert-card reveal">
               <div class="cert-icon">&#11088;</div>
               <div>
                 <p class="cert-name">Sky Walker Award — Best Performance</p>
                 <p class="cert-date">Q4 2024 · Zuci Systems</p>
               </div>
             </div>
-            <div class="cert-card">
+            <div class="cert-card reveal">
               <div class="cert-icon">&#11088;</div>
               <div>
                 <p class="cert-name">Award of Excellence — Supply Operation Analytics</p>
                 <p class="cert-date">2023 · The Global Fund</p>
               </div>
             </div>
-            <div class="cert-card">
+            <div class="cert-card reveal">
               <div class="cert-icon">&#11088;</div>
               <div>
                 <p class="cert-name">Sky Walker Award — Best Performer</p>
                 <p class="cert-date">Q2 2023 · Zuci Systems</p>
               </div>
             </div>
-            <div class="cert-card">
+            <div class="cert-card reveal">
               <div class="cert-icon">&#11088;</div>
               <div>
                 <p class="cert-name">Rookie Award — Exceptional Fresher Performance</p>
@@ -314,13 +362,13 @@
             <span class="contact-icon">&#9993;</span>
             isma96.u@gmail.com
           </a>
-          <a href="tel:+917667555606" class="contact-link">
-            <span class="contact-icon">&#128222;</span>
-            +91 7667 555 606
-          </a>
-          <a href="https://www.linkedin.com/in/isma96u" class="contact-link" target="_blank" rel="noopener">
+          <a href="https://www.linkedin.com/in/isma96u/" class="contact-link" target="_blank" rel="noopener">
             <span class="contact-icon">&#128101;</span>
             linkedin.com/in/isma96u
+          </a>
+          <a href="https://public.tableau.com/app/profile/ismail4056" class="contact-link" target="_blank" rel="noopener">
+            <span class="contact-icon">&#128202;</span>
+            Tableau Public
           </a>
         </div>
         <form class="contact-form">
@@ -337,8 +385,8 @@
   <footer>
     <p>&copy; 2026 Ismail Uthuman. All rights reserved.</p>
     <div class="social-links">
-      <a href="https://www.linkedin.com/in/isma96u" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:isma96.u@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/isma96u/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://public.tableau.com/app/profile/ismail4056" target="_blank" rel="noopener">Tableau Public</a>
     </div>
   </footer>
 

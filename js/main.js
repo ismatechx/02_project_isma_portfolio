@@ -4,10 +4,8 @@ const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 
 window.addEventListener('scroll', () => {
-  // Scrolled header style
   header.classList.toggle('scrolled', window.scrollY > 20);
 
-  // Active nav link
   const scrollY = window.scrollY;
   sections.forEach(section => {
     const top = section.offsetTop - 100;
@@ -29,11 +27,41 @@ navLinksList.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => navLinksList.classList.remove('open'));
 });
 
+// ===== TYPEWRITER =====
+const typewriterEl = document.querySelector('.typewriter');
+if (typewriterEl) {
+  const words = JSON.parse(typewriterEl.dataset.words);
+  let wordIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  function type() {
+    const current = words[wordIndex];
+    if (deleting) {
+      typewriterEl.textContent = current.slice(0, charIndex--);
+    } else {
+      typewriterEl.textContent = current.slice(0, charIndex++);
+    }
+
+    if (!deleting && charIndex === current.length + 1) {
+      deleting = true;
+      setTimeout(type, 1800);
+      return;
+    }
+    if (deleting && charIndex === 0) {
+      deleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+    }
+
+    setTimeout(type, deleting ? 60 : 100);
+  }
+  type();
+}
+
 // ===== SCROLL REVEAL =====
 const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
-      // Stagger siblings slightly
       const siblings = entry.target.parentElement.querySelectorAll('.reveal');
       siblings.forEach((el, idx) => {
         if (el === entry.target) {
