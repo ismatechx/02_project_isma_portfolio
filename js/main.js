@@ -1,7 +1,8 @@
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
 // ===== NAV: scrolled class + active links =====
 const header = document.querySelector('header');
 const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
 
 window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 20);
@@ -42,7 +43,6 @@ if (typewriterEl) {
     } else {
       typewriterEl.textContent = current.slice(0, charIndex++);
     }
-
     if (!deleting && charIndex === current.length + 1) {
       deleting = true;
       setTimeout(type, 1800);
@@ -52,7 +52,6 @@ if (typewriterEl) {
       deleting = false;
       wordIndex = (wordIndex + 1) % words.length;
     }
-
     setTimeout(type, deleting ? 60 : 100);
   }
   type();
@@ -83,7 +82,6 @@ let tableauLoaded = false;
 function openTableauModal() {
   tableauModal.classList.add('open');
   document.body.style.overflow = 'hidden';
-
   if (!tableauLoaded) {
     const divElement = document.getElementById('viz1771970012538');
     const vizElement = divElement.getElementsByTagName('object')[0];
@@ -104,17 +102,11 @@ function closeTableauModal() {
 document.querySelectorAll('.tableau-modal-btn').forEach(btn => {
   btn.addEventListener('click', openTableauModal);
 });
-
 document.querySelector('.tableau-modal-close').addEventListener('click', closeTableauModal);
 document.querySelector('.tableau-modal-overlay').addEventListener('click', closeTableauModal);
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeTableauModal();
-});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeTableauModal(); });
 
 // ===== CONTACT FORM + SUPABASE =====
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-
 const supabase = createClient(
   'https://rubhvlgacxjncohamfnz.supabase.co',
   'sb_publishable_Mh3HFvkFa1mOCiEcr5UXlQ__cUbk771'

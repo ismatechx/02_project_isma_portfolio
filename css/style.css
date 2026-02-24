@@ -629,7 +629,7 @@ section {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
 
@@ -700,12 +700,51 @@ section {
 .project-img--supply { background: linear-gradient(135deg, #041e2e 0%, #012a1e 100%); }
 .project-img--health { background: linear-gradient(135deg, #1a082e 0%, #061e14 100%); }
 .project-img--cx     { background: linear-gradient(135deg, #061424 0%, #011e2e 100%); }
-.project-img--taxi   { background: linear-gradient(135deg, #1a1000 0%, #2a1800 100%); }
+.project-img--taxi   {
+  background: linear-gradient(135deg, #1a1000 0%, #2a1800 100%);
+  overflow: hidden;
+}
+
+.project-img--taxi::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 200, 0, 0.08) 50%, transparent 100%);
+  transform: translateX(-100%);
+  animation: taxiShimmer 3s ease-in-out infinite;
+}
+
+@keyframes taxiShimmer {
+  0%   { transform: translateX(-100%); }
+  50%  { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+.project-card.taxi-card {
+  border-color: rgba(255, 180, 0, 0.2);
+  animation: taxiGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes taxiGlow {
+  from { box-shadow: 0 0 0px rgba(255, 180, 0, 0); }
+  to   { box-shadow: 0 0 20px rgba(255, 180, 0, 0.08); }
+}
+
+.project-card.taxi-card:hover {
+  border-color: rgba(255, 180, 0, 0.4);
+  box-shadow: 0 0 30px rgba(255, 180, 0, 0.12), var(--shadow);
+}
 
 .project-img-icon {
   font-size: 2.5rem;
   position: relative;
   z-index: 1;
+  animation: taxiBounce 2s ease-in-out infinite;
+}
+
+@keyframes taxiBounce {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
 }
 
 /* ===== TABLEAU MODAL ===== */
@@ -986,6 +1025,7 @@ footer {
     gap: 2rem;
   }
 
+  .projects-grid { grid-template-columns: 1fr; }
   .timeline-header { flex-direction: column; }
   .timeline { padding-left: 2rem; }
 }
