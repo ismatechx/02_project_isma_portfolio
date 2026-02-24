@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=4" />
+  <link rel="stylesheet" href="css/style.css?v=5" />
 </head>
 <body>
 
@@ -228,6 +228,7 @@
   <section id="projects">
     <div class="container">
       <h2 class="section-title">Key Projects</h2>
+      <div class="projects-scroll-wrapper">
       <div class="projects-grid">
 
         <div class="project-card reveal">
@@ -285,11 +286,28 @@
           </div>
         </div>
 
+        <div class="project-card reveal">
+          <div class="project-img project-img--happiness">
+            <span class="project-img-icon">🌍</span>
+          </div>
+          <div class="project-info">
+            <h3>World Happiness Report 2022</h3>
+            <p>Tableau dashboard visualizing global happiness scores, key contributing factors, and country-level comparisons from the 2022 World Happiness Report.</p>
+            <div class="project-tags">
+              <span class="tag">Tableau</span>
+              <span class="tag">Global Data</span>
+              <span class="tag">Analytics</span>
+            </div>
+            <button class="btn btn-sm tableau-modal-btn" style="margin-top:1rem;" data-viz="viz1771976526694">View Live Dashboard</button>
+          </div>
+        </div>
+
+      </div>
       </div>
     </div>
   </section>
 
-  <!-- TABLEAU MODAL -->
+  <!-- TABLEAU MODAL — NYC TAXI -->
   <div id="tableau-modal" class="tableau-modal" role="dialog" aria-modal="true" aria-label="Tableau Dashboard">
     <div class="tableau-modal-overlay"></div>
     <div class="tableau-modal-box">
@@ -305,6 +323,34 @@
             <param name='tabs' value='no' />
             <param name='toolbar' value='yes' />
             <param name='static_image' value='https://public.tableau.com/static/images/NY/NYC_MavenTaxiChallenge/TripAnalysis/1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
+          </object>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLEAU MODAL — WORLD HAPPINESS -->
+  <div id="tableau-modal-happiness" class="tableau-modal" role="dialog" aria-modal="true" aria-label="World Happiness Dashboard">
+    <div class="tableau-modal-overlay"></div>
+    <div class="tableau-modal-box">
+      <button class="tableau-modal-close" aria-label="Close">&times;</button>
+      <div class="tableau-modal-body">
+        <div class='tableauPlaceholder' id='viz1771976526694' style='position:relative'>
+          <noscript><a href='#'><img alt='World Happiness Report 2022' src='https://public.tableau.com/static/images/Wo/WorldHappinessReport2022_16608085016760/WorldHappinessReport2022/1_rss.png' style='border:none' /></a></noscript>
+          <object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='WorldHappinessReport2022_16608085016760/WorldHappinessReport2022' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https://public.tableau.com/static/images/Wo/WorldHappinessReport2022_16608085016760/WorldHappinessReport2022/1.png' />
             <param name='animate_transition' value='yes' />
             <param name='display_static_image' value='yes' />
             <param name='display_spinner' value='yes' />

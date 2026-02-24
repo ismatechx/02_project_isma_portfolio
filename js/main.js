@@ -75,36 +75,46 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ===== TABLEAU MODAL =====
-const tableauModal = document.getElementById('tableau-modal');
-let tableauLoaded = false;
+// ===== TABLEAU MODALS =====
+const vizModalMap = {
+  'viz1771970012538': 'tableau-modal',
+  'viz1771976526694': 'tableau-modal-happiness'
+};
+const vizLoaded = {};
 
-function openTableauModal() {
-  tableauModal.classList.add('open');
+function openTableauModal(vizId) {
+  const modalId = vizModalMap[vizId];
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+  modal.classList.add('open');
   document.body.style.overflow = 'hidden';
-  if (!tableauLoaded) {
-    const divElement = document.getElementById('viz1771970012538');
+  if (!vizLoaded[vizId]) {
+    const divElement = document.getElementById(vizId);
     const vizElement = divElement.getElementsByTagName('object')[0];
     vizElement.style.width = '100%';
     vizElement.style.height = '2527px';
     const scriptElement = document.createElement('script');
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
     vizElement.parentNode.insertBefore(scriptElement, vizElement);
-    tableauLoaded = true;
+    vizLoaded[vizId] = true;
   }
 }
 
-function closeTableauModal() {
-  tableauModal.classList.remove('open');
+function closeAllTableauModals() {
+  document.querySelectorAll('.tableau-modal').forEach(m => m.classList.remove('open'));
   document.body.style.overflow = '';
 }
 
 document.querySelectorAll('.tableau-modal-btn').forEach(btn => {
-  btn.addEventListener('click', openTableauModal);
+  btn.addEventListener('click', () => openTableauModal(btn.dataset.viz));
 });
-document.querySelector('.tableau-modal-close').addEventListener('click', closeTableauModal);
-document.querySelector('.tableau-modal-overlay').addEventListener('click', closeTableauModal);
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeTableauModal(); });
+document.querySelectorAll('.tableau-modal-close').forEach(btn => {
+  btn.addEventListener('click', closeAllTableauModals);
+});
+document.querySelectorAll('.tableau-modal-overlay').forEach(el => {
+  el.addEventListener('click', closeAllTableauModals);
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllTableauModals(); });
 
 // ===== CONTACT FORM + SUPABASE =====
 const supabase = createClient(
