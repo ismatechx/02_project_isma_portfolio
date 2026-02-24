@@ -76,16 +76,39 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ===== CONTACT FORM =====
+// ===== CONTACT FORM + SUPABASE =====
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const supabase = createClient(
+  'https://rubhvlgacxjncohamfnz.supabase.co',
+  'sb_publishable_Mh3HFvkFa1mOCiEcr5UXlQ__cUbk771'
+);
+
 const form = document.querySelector('.contact-form');
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const btn = form.querySelector('button[type="submit"]');
-  btn.textContent = 'Sent!';
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const message = form.message.value.trim();
+
+  btn.textContent = 'Sending...';
   btn.disabled = true;
-  setTimeout(() => {
-    btn.textContent = 'Send Message';
+
+  const { error } = await supabase
+    .from('contact_submissions')
+    .insert([{ name, email, message }]);
+
+  if (error) {
+    btn.textContent = 'Failed — try again';
     btn.disabled = false;
+    console.error(error);
+  } else {
+    btn.textContent = 'Sent!';
     form.reset();
-  }, 3000);
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+    }, 3000);
+  }
 });
