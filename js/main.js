@@ -1,39 +1,54 @@
-// Mobile nav toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
-
-// Close nav when a link is clicked
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
-});
-
-// Highlight active nav link on scroll
+// ===== NAV: scrolled class + active links =====
+const header = document.querySelector('header');
 const sections = document.querySelectorAll('section[id]');
-const links = document.querySelectorAll('.nav-links a');
+const navLinks = document.querySelectorAll('.nav-links a');
 
 window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
+  // Scrolled header style
+  header.classList.toggle('scrolled', window.scrollY > 20);
 
+  // Active nav link
+  const scrollY = window.scrollY;
   sections.forEach(section => {
-    const top = section.offsetTop - 80;
+    const top = section.offsetTop - 100;
     const bottom = top + section.offsetHeight;
     const id = section.getAttribute('id');
     const link = document.querySelector(`.nav-links a[href="#${id}"]`);
-
     if (link) {
-      if (scrollY >= top && scrollY < bottom) {
-        links.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-      }
+      link.classList.toggle('active', scrollY >= top && scrollY < bottom);
     }
   });
 });
 
-// Contact form submission placeholder
+// ===== MOBILE NAV =====
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinksList = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => navLinksList.classList.toggle('open'));
+navLinksList.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navLinksList.classList.remove('open'));
+});
+
+// ===== SCROLL REVEAL =====
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      // Stagger siblings slightly
+      const siblings = entry.target.parentElement.querySelectorAll('.reveal');
+      siblings.forEach((el, idx) => {
+        if (el === entry.target) {
+          setTimeout(() => el.classList.add('visible'), idx * 80);
+        }
+      });
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ===== CONTACT FORM =====
 const form = document.querySelector('.contact-form');
 form.addEventListener('submit', (e) => {
   e.preventDefault();
