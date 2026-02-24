@@ -269,9 +269,53 @@
           </div>
         </div>
 
+        <div class="project-card reveal">
+          <div class="project-img project-img--taxi">
+            <span class="project-img-icon">🚕</span>
+          </div>
+          <div class="project-info">
+            <h3>NYC Maven Taxi Challenge</h3>
+            <p>Interactive Tableau dashboard analyzing NYC taxi trip patterns, fare trends, pickup/drop-off hotspots, and time-based demand insights across New York City.</p>
+            <div class="project-tags">
+              <span class="tag">Tableau</span>
+              <span class="tag">Data Analysis</span>
+              <span class="tag">NYC Open Data</span>
+            </div>
+            <button class="btn btn-sm tableau-modal-btn" style="margin-top:1rem;" data-viz="viz1771970012538">View Live Dashboard</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
+
+  <!-- TABLEAU MODAL -->
+  <div id="tableau-modal" class="tableau-modal" role="dialog" aria-modal="true" aria-label="Tableau Dashboard">
+    <div class="tableau-modal-overlay"></div>
+    <div class="tableau-modal-box">
+      <button class="tableau-modal-close" aria-label="Close">&times;</button>
+      <div class="tableau-modal-body">
+        <div class='tableauPlaceholder' id='viz1771970012538' style='position:relative'>
+          <noscript><a href='#'><img alt='Trip Analysis' src='https://public.tableau.com/static/images/NY/NYC_MavenTaxiChallenge/TripAnalysis/1_rss.png' style='border:none' /></a></noscript>
+          <object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='NYC_MavenTaxiChallenge/TripAnalysis' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https://public.tableau.com/static/images/NY/NYC_MavenTaxiChallenge/TripAnalysis/1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
+          </object>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- CERTIFICATIONS -->
   <section id="certifications">

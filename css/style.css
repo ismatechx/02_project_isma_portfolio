@@ -700,6 +700,72 @@ section {
 .project-img--supply { background: linear-gradient(135deg, #041e2e 0%, #012a1e 100%); }
 .project-img--health { background: linear-gradient(135deg, #1a082e 0%, #061e14 100%); }
 .project-img--cx     { background: linear-gradient(135deg, #061424 0%, #011e2e 100%); }
+.project-img--taxi   { background: linear-gradient(135deg, #1a1000 0%, #2a1800 100%); }
+
+.project-img-icon {
+  font-size: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== TABLEAU MODAL ===== */
+.tableau-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+}
+
+.tableau-modal.open {
+  display: flex;
+}
+
+.tableau-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+}
+
+.tableau-modal-box {
+  position: relative;
+  z-index: 1;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  width: 95vw;
+  max-width: 1100px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tableau-modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--clr-muted);
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 2;
+  transition: color var(--transition);
+}
+
+.tableau-modal-close:hover {
+  color: var(--clr-text);
+}
+
+.tableau-modal-body {
+  overflow: auto;
+  padding: 2.5rem 1.5rem 1.5rem;
+  flex: 1;
+}
 
 /* ===== CERTIFICATIONS ===== */
 #certifications {

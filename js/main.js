@@ -76,6 +76,42 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+// ===== TABLEAU MODAL =====
+const tableauModal = document.getElementById('tableau-modal');
+let tableauLoaded = false;
+
+function openTableauModal() {
+  tableauModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  if (!tableauLoaded) {
+    const divElement = document.getElementById('viz1771970012538');
+    const vizElement = divElement.getElementsByTagName('object')[0];
+    vizElement.style.width = '100%';
+    vizElement.style.height = '2527px';
+    const scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    tableauLoaded = true;
+  }
+}
+
+function closeTableauModal() {
+  tableauModal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.tableau-modal-btn').forEach(btn => {
+  btn.addEventListener('click', openTableauModal);
+});
+
+document.querySelector('.tableau-modal-close').addEventListener('click', closeTableauModal);
+document.querySelector('.tableau-modal-overlay').addEventListener('click', closeTableauModal);
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeTableauModal();
+});
+
 // ===== CONTACT FORM + SUPABASE =====
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
