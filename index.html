@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=5" />
+  <link rel="stylesheet" href="css/style.css?v=6" />
 </head>
 <body>
 
@@ -228,8 +228,11 @@
   <section id="projects">
     <div class="container">
       <h2 class="section-title">Key Projects</h2>
-      <div class="projects-scroll-wrapper">
-      <div class="projects-grid">
+      <div class="projects-outer">
+        <button class="scroll-arrow left" id="scroll-left">&#8592;</button>
+        <button class="scroll-arrow right" id="scroll-right">&#8594;</button>
+        <div class="projects-scroll-wrapper" id="projects-scroll">
+        <div class="projects-grid">
 
         <div class="project-card reveal">
           <div class="project-img project-img--supply"></div>
@@ -302,7 +305,9 @@
           </div>
         </div>
 
-      </div>
+        </div>
+        </div>
+        <div class="scroll-dots" id="scroll-dots"></div>
       </div>
     </div>
   </section>
