@@ -75,42 +75,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ===== PROJECT SCROLL =====
-const projectsScroll = document.getElementById('projects-scroll');
-const scrollOuter    = projectsScroll?.closest('.projects-outer');
-const btnLeft        = document.getElementById('scroll-left');
-const btnRight       = document.getElementById('scroll-right');
-const dotsContainer  = document.getElementById('scroll-dots');
-const cardWidth      = 260 + 12; // card + gap
-const CARDS          = 5; // total cards
-
-if (projectsScroll) {
-  // build dots
-  for (let i = 0; i < CARDS; i++) {
-    const d = document.createElement('span');
-    d.className = 'scroll-dot' + (i === 0 ? ' active' : '');
-    dotsContainer.appendChild(d);
-  }
-
-  function updateUI() {
-    const s = projectsScroll.scrollLeft;
-    const max = projectsScroll.scrollWidth - projectsScroll.clientWidth;
-    btnLeft.classList.toggle('hidden', s <= 0);
-    btnRight.classList.toggle('hidden', s >= max - 1);
-    scrollOuter.classList.toggle('at-start', s <= 0);
-    scrollOuter.classList.toggle('at-end', s >= max - 1);
-    const idx = Math.round(s / cardWidth);
-    dotsContainer.querySelectorAll('.scroll-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === idx);
-    });
-  }
-
-  btnLeft.addEventListener('click',  () => { projectsScroll.scrollLeft -= cardWidth; });
-  btnRight.addEventListener('click', () => { projectsScroll.scrollLeft += cardWidth; });
-  projectsScroll.addEventListener('scroll', updateUI);
-  updateUI();
-}
-
 // ===== TABLEAU MODALS =====
 const vizModalMap = {
   'viz1771970012538': 'tableau-modal',
