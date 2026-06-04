@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ismail OS — Desktop View</title>
+  <meta name="description" content="Desktop-style view of Ismail Uthuman's portfolio — apps, multi-window, terminal." />
+  <meta name="theme-color" content="#07080C" />
+  <meta property="og:title" content="Ismail OS — Desktop View" />
+  <meta property="og:description" content="An interactive desktop-style portfolio with apps, multi-window, and a virtual terminal." />
+  <meta property="og:image" content="assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="assets/og.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=12" />
+  <link rel="stylesheet" href="css/desktop.css?v=3" />
+</head>
+<body class="os">
+
+  <!-- LOCK SCREEN -->
+  <div class="lock" id="lock">
+    <div class="lock-content">
+      <div class="lock-time" id="lock-time">00:00</div>
+      <div class="lock-date" id="lock-date">—</div>
+      <div class="lock-avatar">I</div>
+      <div class="lock-user">Ismail Uthuman</div>
+      <button class="lock-enter" id="lock-enter">Click to enter <span class="lock-arrow">→</span></button>
+      <div class="lock-hint mono">$ ./portfolio --mode=desktop</div>
+    </div>
+  </div>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <span class="tb-logo">Ismail<span class="tb-dot">.</span>os</span>
+      <span class="tb-sep">/</span>
+      <span class="tb-active" id="tb-active">Desktop</span>
+    </div>
+    <div class="topbar-right">
+      <span class="tb-item mono" id="tb-clock">--:--</span>
+      <span class="tb-item tb-icons">
+        <span class="tb-dot tb-dot--g" title="Online"></span>
+        <span class="mono">EN</span>
+      </span>
+      <a class="tb-item tb-back" href="index.html">← website view</a>
+    </div>
+  </div>
+
+  <!-- DESKTOP -->
+  <main class="desktop">
+    <div class="desk-grid">
+      <button class="app" data-app="about">
+        <span class="app-icon" data-emoji="👤"></span>
+        <span class="app-label">About</span>
+      </button>
+      <button class="app" data-app="skills">
+        <span class="app-icon" data-emoji="⚡"></span>
+        <span class="app-label">Skills</span>
+      </button>
+      <button class="app" data-app="experience">
+        <span class="app-icon" data-emoji="📈"></span>
+        <span class="app-label">Experience</span>
+      </button>
+      <button class="app" data-app="projects">
+        <span class="app-icon" data-emoji="📁"></span>
+        <span class="app-label">Projects</span>
+      </button>
+      <button class="app" data-app="certs">
+        <span class="app-icon" data-emoji="🏆"></span>
+        <span class="app-label">Certifications</span>
+      </button>
+      <button class="app" data-app="contact">
+        <span class="app-icon" data-emoji="✉"></span>
+        <span class="app-label">Contact</span>
+      </button>
+      <button class="app" data-app="terminal">
+        <span class="app-icon" data-emoji=">_"></span>
+        <span class="app-label">Terminal</span>
+      </button>
+      <a class="app" href="index.html">
+        <span class="app-icon" data-emoji="🌐"></span>
+        <span class="app-label">Website</span>
+      </a>
+    </div>
+  </main>
+
+  <!-- DOCK -->
+  <div class="dock">
+    <button class="dock-btn" data-app="about" title="About">👤</button>
+    <button class="dock-btn" data-app="projects" title="Projects">📁</button>
+    <button class="dock-btn" data-app="terminal" title="Terminal">&gt;_</button>
+    <button class="dock-btn" data-app="contact" title="Contact">✉</button>
+    <span class="dock-sep"></span>
+    <a class="dock-btn" href="https://www.linkedin.com/in/isma96u/" target="_blank" rel="noopener" title="LinkedIn">in</a>
+    <a class="dock-btn" href="Ismail_resume.pdf" download title="Download CV">↓</a>
+  </div>
+
+  <!-- WINDOWS -->
+  <div class="windows" id="windows">
+
+    <section class="win" id="win-about">
+      <header class="win-bar">
+        <div class="win-dots">
+          <button class="win-dot win-dot--r" data-close></button>
+          <button class="win-dot win-dot--y"></button>
+          <button class="win-dot win-dot--g"></button>
+        </div>
+        <div class="win-title mono">~/about — Ismail</div>
+      </header>
+      <div class="win-body">
+        <h2 class="win-h">About</h2>
+        <p>Senior Business Intelligence Analyst with <strong>5+ years</strong> delivering data-driven solutions — now extending into <span class="gr">AI &amp; GenAI</span> with Claude API, RAG, and LLM-powered analytics.</p>
+        <p class="muted">Skilled in interactive dashboards, automating reporting workflows, and extracting actionable insights from complex datasets to support critical decisions.</p>
+        <div class="kv">
+          <div><span class="mono k">location</span><span>New Jersey, USA</span></div>
+          <div><span class="mono k">role</span><span>Sr. BI Analyst @ Zuci Systems</span></div>
+          <div><span class="mono k">stack</span><span>Power BI · Tableau · SQL · Claude API · Python</span></div>
+          <div><span class="mono k">email</span><span><a href="mailto:isma96.u@gmail.com">isma96.u@gmail.com</a></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="win" id="win-skills">
+      <header class="win-bar">
+        <div class="win-dots">
+          <button class="win-dot win-dot--r" data-close></button>
+          <button class="win-dot win-dot--y"></button>
+          <button class="win-dot win-dot--g"></button>
+        </div>
+        <div class="win-title mono">~/skills</div>
+      </header>
+      <div class="win-body">
+        <h2 class="win-h">Skills</h2>
+        <div class="sk-group">
+          <h3 class="sk-h">AI &amp; GenAI <span class="sk-tag">new</span></h3>
+          <div class="sk-pills">
+            <span class="sk-pill">Claude API</span><span class="sk-pill">LLM Integration</span>
+            <span class="sk-pill">RAG</span><span class="sk-pill">Prompt Engineering</span>
+            <span class="sk-pill">LangChain</span><span class="sk-pill">Vector DBs</span>
+          </div>
+        </div>
+        <div class="sk-group">
+          <h3 class="sk-h">BI Tools</h3>
+          <div class="sk-pills">
+            <span class="sk-pill">Tableau</span><span class="sk-pill">Power BI</span><span class="sk-pill">Tableau Prep</span>
+          </div>
+        </div>
+        <div class="sk-group">
+          <h3 class="sk-h">Programming &amp; Databases</h3>
+          <div class="sk-pills">
+            <span class="sk-pill">SQL</span><span class="sk-pill">Python</span>
+            <span class="sk-pill">MS SQL Server</span><span class="sk-pill">Azure SQL</span>
+          </div>
+        </div>
+        <div class="sk-group">
+          <h3 class="sk-h">Cloud &amp; ETL</h3>
+          <div class="sk-pills">
+            <span class="sk-pill">Azure Data Factory</span><span class="sk-pill">Microsoft Fabric</span><span class="sk-pill">Tableau Server</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="win" id="win-experience">
+      <header class="win-bar">
+        <div class="win-dots">
+          <button class="win-dot win-dot--r" data-close></button>
+          <button class="win-dot win-dot--y"></button>
+          <button class="win-dot win-dot--g"></button>
+        </div>
+        <div class="win-title mono">~/experience — git log</div>
+      </header>
+      <div class="win-body mono-body">
+        <h2 class="win-h">Experience</h2>
+        <pre class="git-log">
+<span class="g-k">commit</span> <span class="g-h">8f3a2b1</span> <span class="g-b">(HEAD → main, role/zuci-usa)</span>
+<span class="g-k">Author:</span> Ismail Uthuman &lt;ismatechx@gmail.com&gt;
+<span class="g-k">Date:</span>   <span class="g-d">Jun 2025 → Present</span>
+
+    <span class="g-t">feat</span>(<span class="g-s">zuci-usa</span>): Senior Business Intelligence Analyst
+    · Built Power BI dashboards from patient insurance docs
+    · Automated validation reports to cut manual reconciliation
+    <span class="g-plus">+</span> Power BI · SQL · Azure SQL
+
+<span class="g-k">commit</span> <span class="g-h">c41d9e6</span> <span class="g-b">(role/zuci-india)</span>
+<span class="g-k">Author:</span> Ismail Uthuman &lt;ismatechx@gmail.com&gt;
+<span class="g-k">Date:</span>   <span class="g-d">Mar 2021 → May 2025</span>
+
+    <span class="g-t">feat</span>(<span class="g-s">zuci-india</span>): Senior BI Analyst
+    · Tableau dashboards — 25% faster report turnaround
+    · +15% operational efficiency w/ Supply, Finance, HPMT
+    · Led ISMS Risk Dashboard (Power BI + RLS)
+    <span class="g-plus">+</span> Tableau · Power BI · SQL · Tableau Prep
+
+<span class="g-k">commit</span> <span class="g-h">a02f1d3</span> <span class="g-b">(role/radiare)</span>
+<span class="g-k">Author:</span> Ismail Uthuman &lt;ismatechx@gmail.com&gt;
+<span class="g-k">Date:</span>   <span class="g-d">Dec 2019 → Feb 2021</span>
+
+    <span class="g-t">feat</span>(<span class="g-s">radiare</span>): Junior Consultant
+    · Global Fund dashboards (HIV/TB/Malaria, COVID KPIs)
+    · Tableau Lineage Analytics w/ GraphQL
+    <span class="g-plus">+</span> Tableau · GraphQL · Tableau Server
+
+<span class="g-k">commit</span> <span class="g-h">e1b3070</span> <span class="g-b">(root, init)</span>
+<span class="g-k">Date:</span>   <span class="g-d">Sep 2019 → Nov 2019</span>
+
+    <span class="g-t">init</span>(<span class="g-s">radiare</span>): Software Trainee Intern
+    · Tableau + SQL fundamentals; chart types &amp; basics
+    <span class="g-plus">+</span> Tableau · SQL
+</pre>
+      </div>
+    </section>
+
+    <section class="win" id="win-projects">
+      <header class="win-bar">
+        <div class="win-dots">
+          <button class="win-dot win-dot--r" data-close></button>
+          <button class="win-dot win-dot--y"></button>
+          <button class="win-dot win-dot--g"></button>
+        </div>
+        <div class="win-title mono">~/projects</div>
+      </header>
+      <div class="win-body">
+        <h2 class="win-h">Projects</h2>
+        <div class="pr-list">
+          <a class="pr" href="index.html#projects">
+            <div class="pr-num mono">01</div>
+            <div>
+              <div class="pr-t">Supply Operations Dashboard</div>
+              <div class="pr-d">16-KPI Tableau dashboard — Strategic Sourcing, Procurement, IT Spend.</div>
+              <div class="pr-tags"><span>Tableau</span><span>SQL</span></div>
+            </div>
+          </a>
+          <a class="pr" href="index.html#projects">
+            <div class="pr-num mono">02</div>
+            <div>
+              <div class="pr-t">Global Fund Health Dashboards</div>
+              <div class="pr-d">HIV/TB/Malaria monitoring, COVID-19 KPIs, grant-making analytics.</div>
+              <div class="pr-tags"><span>Tableau</span><span>GraphQL</span></div>
+            </div>
+          </a>
+          <a class="pr" href="index.html#projects">
+            <div class="pr-num mono">03</div>
+            <div>
+              <div class="pr-t">ISMS Risk Dashboard</div>
+              <div class="pr-d">Power BI + RLS — risk trends, threat analysis, compliance KPIs.</div>
+              <div class="pr-tags"><span>Power BI</span><span>RLS</span></div>
+            </div>
+          </a>
+          <a class="pr" href="index.html#projects">
+            <div class="pr-num mono">04</div>
+            <div>
+              <div class="pr-t">NYC Maven Taxi Challenge <span class="pr-live">live</span></div>
+              <div class="pr-d">Taxi trip patterns, fare trends, pickup/drop-off hotspots.</div>
+              <div class="pr-tags"><span>Tableau Public</span></div>
+            </div>
+          </a>
+          <a class="pr" href="index.html#projects">
+            <div class="pr-num mono">05</div>
+            <div>
+              <div class="pr-t">World Happiness Report 2022 <span class="pr-live">live</span></div>
+              <div class="pr-d">Country-level happiness factors visualised.</div>
+              <div class="pr-tags"><span>Tableau Public</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="win" id="win-certs">
+      <header class="win-bar">
+        <div class="win-dots">
+          <button class="win-dot win-dot--r" data-close></button>
+          <button class="win-dot win-dot--y"></button>
+          <button class="win-dot win-dot--g"></button>
+        </div>
+        <div class="win-title mono">~/certifications</div>
+      </header>
+      <div class="win-body">
+        <h2 class="win-h">Certifications &amp; Awards</h2>
+        <h3 class="sk-h">Certifications</h3>
+        <ul class="cr-list">
+          <li><span class="cr-i">🏆</span><div><strong>Microsoft Fabric Analytics Engineer Associate</strong><span class="muted">Jan 2025</span></div></li>
+          <li><span class="cr-i">🏆</span><div><strong>Microsoft Azure Data Engineer</strong><span class="muted">Aug 2022</span></div></li>
+          <li><span class="cr-i">🏆</span><div><strong>Tableau Desktop Specialist</strong><span class="muted">Jul 2021</span></div></li>
+          <li><span class="cr-i">🏆</span><div><strong>Microsoft Azure Data Fundamentals</strong><span class="muted">Sep 2021</span></div></li>
+        </ul>
+        <h3 class="sk-h">Awards</h3>
+        <ul class="cr-list">
+          <li><span class="cr-i">⭐</span><div><strong>Sky Walker Award — Best Performance</strong><span class="muted">Q4 2024 · Zuci Systems</span></div></li>
+          <li><span class="cr-i">⭐</span><div><strong>Award of Excellence — Supply Operation Analytics</strong><span class="muted">2023 · The Global Fund</span></div></li>
+          <li><span class="cr-i">⭐</span><div><strong>Sky Walker Award — Best Performer</strong><span class="muted">Q2 2023 · Zuci Systems</span></div></li>
+          <li><span class="cr-i">⭐</span><div><strong>Rookie Award — Exceptional Fresher Performance</strong><span class="muted">2020 · Radiare</span></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="win" id="win-contact">
+      <header class="win-bar">
+        <div class="win-dots">
+          <button class="win-dot win-dot--r" data-close></button>
+          <button class="win-dot win-dot--y"></button>
+          <button class="win-dot win-dot--g"></button>
+        </div>
+        <div class="win-title mono">~/contact — message.json</div>
+      </header>
+      <div class="win-body">
+        <h2 class="win-h">Contact</h2>
+        <p class="muted">Reach me directly or open a quick line below.</p>
+        <ul class="ct-list">
+          <li><a href="mailto:isma96.u@gmail.com">✉ isma96.u@gmail.com</a></li>
+          <li><a href="https://www.linkedin.com/in/isma96u/" target="_blank" rel="noopener">in linkedin.com/in/isma96u</a></li>
+          <li><a href="https://public.tableau.com/app/profile/ismail4056" target="_blank" rel="noopener">📊 Tableau Public</a></li>
+        </ul>
+        <a class="btn ct-btn" href="index.html#contact">Open contact form on website →</a>
+      </div>
+    </section>
+
+    <section class="win" id="win-terminal">
+      <header class="win-bar">
+        <div class="win-dots">
+          <button class="win-dot win-dot--r" data-close></button>
+          <button class="win-dot win-dot--y"></button>
+          <button class="win-dot win-dot--g"></button>
+        </div>
+        <div class="win-title mono">~/terminal — ismail@os</div>
+      </header>
+      <div class="win-body mono-body terminal-body">
+        <div class="term-out" id="term-out">
+<span class="t-info">ismail-os 1.0.0 — type 'help' for commands.</span>
+        </div>
+        <div class="term-input">
+          <span class="t-prompt"><span class="t-user">ismail</span>@<span class="t-host">os</span>:<span class="t-path">~</span>$</span>
+          <input id="term-in" type="text" autocomplete="off" spellcheck="false" autofocus />
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="js/desktop.js?v=3"></script>
+</body>
+</html>

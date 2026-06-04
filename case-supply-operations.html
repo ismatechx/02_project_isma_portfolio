@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study — Supply Operations Dashboard · Ismail Uthuman</title>
+  <meta name="description" content="How I built a 16-KPI supply operations dashboard that cut report turnaround 25% and lifted operational efficiency 15%." />
+  <meta name="theme-color" content="#07080C" />
+  <meta property="og:title" content="Case Study — Supply Operations Dashboard" />
+  <meta property="og:description" content="16 KPIs · 25% faster reporting · 15% efficiency gain. Tableau + SQL deep dive." />
+  <meta property="og:image" content="assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="assets/og.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=13" />
+  <style>
+    /* Case-study-specific */
+    .cs-hero {
+      padding: 160px 28px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero .container { max-width: 920px; }
+    .cs-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: var(--text-dim);
+      margin-bottom: 28px;
+      transition: color .2s;
+    }
+    .cs-back:hover { color: var(--text); }
+    .cs-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--grad-2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .cs-title {
+      font-size: clamp(40px, 6.5vw, 72px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+      margin-bottom: 18px;
+    }
+    .cs-title .cs-italic {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      background: linear-gradient(110deg, var(--grad-2), var(--grad-1) 60%, var(--grad-3));
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+    }
+    .cs-tagline {
+      font-size: 19px;
+      color: var(--text-muted);
+      max-width: 660px;
+      margin-bottom: 36px;
+    }
+    .cs-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .cs-meta-cell {
+      padding: 14px 18px;
+      border-radius: var(--r-md);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+    .cs-meta-cell .k {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--syn-hash);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 4px;
+    }
+    .cs-meta-cell .v {
+      font-size: 14.5px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .cs-section { padding: 56px 0; position: relative; }
+    .cs-section .container { max-width: 880px; }
+
+    .cs-h {
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 14px;
+    }
+    .cs-h::before {
+      content: "/ ";
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      background: linear-gradient(120deg, var(--grad-2), var(--grad-1));
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+    }
+    .cs-lead {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      max-width: 720px;
+    }
+    .cs-body p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+    .cs-body strong { color: var(--text); font-weight: 600; }
+
+    .cs-callout {
+      padding: 20px 24px;
+      border-radius: var(--r-md);
+      background:
+        linear-gradient(135deg, rgba(124,92,255,0.08), rgba(0,212,255,0.04) 60%, transparent),
+        var(--surface);
+      border: 1px solid rgba(124,92,255,0.25);
+      backdrop-filter: blur(10px);
+      margin: 20px 0;
+      font-size: 15px;
+      color: var(--text);
+    }
+    .cs-callout .lbl {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--grad-2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .cs-steps { display: grid; gap: 14px; margin: 20px 0 28px; }
+    .cs-step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      padding: 22px 24px;
+      border-radius: var(--r-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+    .cs-step-num {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 36px;
+      line-height: 1;
+      background: linear-gradient(120deg, var(--grad-2), var(--grad-1));
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+    .cs-step h3 {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .cs-step p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .cs-impact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin: 22px 0 8px;
+    }
+    .cs-impact-card {
+      padding: 24px 22px;
+      border-radius: var(--r-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+    .cs-impact-num {
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(120deg, #fff, var(--grad-2));
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+      line-height: 1;
+    }
+    .cs-impact-label {
+      font-size: 12px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 8px;
+    }
+
+    .cs-stack {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 16px;
+    }
+    .cs-stack .tag {
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .cs-cta {
+      padding: 60px 0 120px;
+      text-align: center;
+    }
+    .cs-cta .cs-h { margin-bottom: 14px; }
+    .cs-cta p { color: var(--text-muted); margin-bottom: 24px; }
+    .cs-cta .btn-row { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+    /* placeholder note styling */
+    .cs-note {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--text-dim);
+      padding: 8px 12px;
+      border-left: 2px solid var(--syn-hash);
+      background: rgba(255, 184, 107, 0.04);
+      margin: 12px 0;
+    }
+    .cs-note::before { content: "// "; color: var(--syn-hash); }
+
+    @media (max-width: 700px) {
+      .cs-hero { padding: 120px 20px 60px; }
+      .cs-step { grid-template-columns: 1fr; gap: 8px; }
+      .cs-step-num { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV (slim, reused from main style) -->
+  <header>
+    <nav>
+      <div class="logo">Ismail.</div>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">All projects</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a class="lang-btn active" href="index.html" style="text-decoration:none;">← Home</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="hero-orb hero-orb--1" style="top:10%; left:-100px; width:380px; height:380px; opacity:0.35;"></div>
+    <div class="hero-orb hero-orb--2" style="top:30%; right:-80px; width:300px; height:300px; opacity:0.30;"></div>
+
+    <div class="container">
+      <a href="index.html#projects" class="cs-back">← back to projects</a>
+      <div class="cs-eyebrow">Case Study · 01</div>
+      <h1 class="cs-title">Supply Operations<br/><span class="cs-italic">at scale.</span></h1>
+      <p class="cs-tagline">A 16-KPI Tableau dashboard for Zuci Systems' end-to-end supply operation — cut report turnaround by 25% and lifted operational efficiency by 15%.</p>
+
+      <div class="cs-meta">
+        <div class="cs-meta-cell"><div class="k">Role</div><div class="v">Senior BI Analyst</div></div>
+        <div class="cs-meta-cell"><div class="k">Client</div><div class="v">Zuci Systems · Supply Ops</div></div>
+        <div class="cs-meta-cell"><div class="k">Period</div><div class="v">2021 – 2025</div></div>
+        <div class="cs-meta-cell"><div class="k">Team</div><div class="v">Solo + cross-functional</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="cs-section">
+    <div class="container">
+      <h2 class="cs-h">The problem</h2>
+      <p class="cs-lead">Supply, Finance, and HPMT teams were running on spreadsheet exports and ad-hoc queries. Decisions waited on reports; reports waited on people.</p>
+      <div class="cs-body">
+        <p>Each weekly review cycle involved <strong>pulling data from disparate sources</strong> (procurement systems, finance ledgers, supplier portals), reconciling them by hand, and authoring slide-by-slide commentary. The same KPIs were re-built each cycle, often with subtle inconsistencies.</p>
+        <p>Stakeholders needed a single source of truth that covered <strong>Strategic Sourcing, Procurement, IT Spend, and end-to-end Supply Ops</strong> — and that they could trust without re-validating it themselves.</p>
+        <div class="cs-callout">
+          <span class="lbl">Constraint</span>
+          The output had to be presentable to senior leadership, drillable for analysts, and robust under daily refresh — without adding a maintenance person.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="cs-section">
+    <div class="container">
+      <h2 class="cs-h">Approach</h2>
+      <p class="cs-lead">One dashboard, four lenses, sixteen KPIs — built to scale without becoming someone's full-time job.</p>
+
+      <div class="cs-steps">
+        <div class="cs-step">
+          <div class="cs-step-num">01</div>
+          <div>
+            <h3>Map the questions before the data</h3>
+            <p>Workshopped with Supply, Finance, and HPMT to extract the actual decisions each team makes weekly. Translated those into 16 KPIs — not the other way around.</p>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">02</div>
+          <div>
+            <h3>Consolidate sources via SQL + Tableau Prep</h3>
+            <p>Built reusable data flows that joined procurement, finance, and supplier data on a stable key, with validation steps to catch reconciliation drift before it reached the dashboard.</p>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">03</div>
+          <div>
+            <h3>Design the dashboard as a decision tool</h3>
+            <p>One executive overview (16 KPIs at a glance), drill-down views per pillar, supplier KPI matrix, Actual vs Forecast, and OTIF delivery monitoring. No vanity charts.</p>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">04</div>
+          <div>
+            <h3>Make refresh cheap</h3>
+            <p>Set up automated refresh on Tableau Server with validation alerts. Failures surfaced before stakeholders saw stale data — and the dashboard ran itself for years.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section class="cs-section">
+    <div class="container">
+      <h2 class="cs-h">Impact</h2>
+      <div class="cs-impact">
+        <div class="cs-impact-card">
+          <div class="cs-impact-num">25%</div>
+          <div class="cs-impact-label">Faster report turnaround</div>
+        </div>
+        <div class="cs-impact-card">
+          <div class="cs-impact-num">15%</div>
+          <div class="cs-impact-label">Operational efficiency lift</div>
+        </div>
+        <div class="cs-impact-card">
+          <div class="cs-impact-num">16</div>
+          <div class="cs-impact-label">KPIs unified in one view</div>
+        </div>
+        <div class="cs-impact-card">
+          <div class="cs-impact-num">4+ yr</div>
+          <div class="cs-impact-label">In production, unchanged owner</div>
+        </div>
+      </div>
+
+      <div class="cs-callout" style="margin-top: 24px;">
+        <span class="lbl">Recognition</span>
+        Award of Excellence — Supply Operation Analytics (2023, The Global Fund).
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="cs-section">
+    <div class="container">
+      <h2 class="cs-h">Stack</h2>
+      <p class="cs-lead">No exotic tools — boring, dependable, well-understood.</p>
+      <div class="cs-stack">
+        <span class="tag">Tableau Desktop</span>
+        <span class="tag">Tableau Prep</span>
+        <span class="tag">Tableau Server</span>
+        <span class="tag">SQL</span>
+        <span class="tag">MS SQL Server</span>
+        <span class="tag">Excel (source)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="cs-section">
+    <div class="container">
+      <h2 class="cs-h">What I'd do differently today</h2>
+      <div class="cs-body">
+        <p>If I rebuilt this in 2026, the BI piece stays — but the validation layer changes. I'd put a small <strong>LLM-based reconciliation agent</strong> on top: have it explain in plain English why two numbers disagree across systems, instead of leaving an analyst to dig.</p>
+        <p>That's the bridge between this case study and where I'm heading — same problem (decision speed), new tooling (Claude API + RAG over source-of-truth docs).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cs-cta">
+    <div class="container">
+      <h2 class="cs-h">Want the full walkthrough?</h2>
+      <p>Happy to share the dashboard live, walk through the data model, or talk about your equivalent problem.</p>
+      <div class="btn-row">
+        <a href="index.html#contact" class="btn">Get in touch <span class="btn-arrow">→</span></a>
+        <a href="index.html#projects" class="btn btn-outline">More projects</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Ismail Uthuman. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/isma96u/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://public.tableau.com/app/profile/ismail4056" target="_blank" rel="noopener">Tableau Public</a>
+    </div>
+  </footer>
+
+</body>
+</html>

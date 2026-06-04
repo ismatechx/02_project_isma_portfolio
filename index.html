@@ -3,11 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ismail Uthuman | BI Analyst</title>
+  <title>Ismail Uthuman — AI Analytics Engineer</title>
+  <meta name="description" content="Senior BI Analyst with 5+ years bringing GenAI (Claude API, RAG, LLMs) into the BI workflow. Tableau, Power BI, SQL, Python." />
+  <meta name="author" content="Ismail Uthuman" />
+  <meta name="theme-color" content="#07080C" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ismail Uthuman — AI Analytics Engineer" />
+  <meta property="og:description" content="5+ years turning data into decisions — now bringing GenAI into the BI workflow." />
+  <meta property="og:image" content="assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ismail Uthuman — AI Analytics Engineer" />
+  <meta name="twitter:description" content="5+ years turning data into decisions — now bringing GenAI into the BI workflow." />
+  <meta name="twitter:image" content="assets/og.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=8" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=21" />
 </head>
 <body>
 
@@ -16,14 +32,20 @@
     <nav>
       <div class="logo">Ismail.</div>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#certifications" data-i18n="nav.certifications">Certifications</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
-      <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+      <div class="nav-right">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" class="lang-btn" data-lang="ta" aria-pressed="false" lang="ta">த</button>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+      </div>
     </nav>
   </header>
 
@@ -35,73 +57,71 @@
     <div class="hero-orb hero-orb--2"></div>
     <div class="hero-orb hero-orb--3"></div>
 
-    <!-- Floating data cards -->
-    <div class="float-card float-card--tl">
-      <div class="float-card-label">Report Turnaround</div>
-      <div class="float-card-value">&#8595; 25%</div>
-    </div>
-    <div class="float-card float-card--tr">
-      <div class="float-card-label">Operational Efficiency</div>
-      <div class="float-card-value">&#8593; 15%</div>
-    </div>
-    <div class="float-card float-card--bl">
-      <div class="float-card-label">Years Experience</div>
-      <div class="float-card-value">5+</div>
-    </div>
-    <div class="float-card float-card--br">
-      <div class="float-card-label">Certifications</div>
-      <div class="float-card-value">4 &#127941;</div>
-    </div>
-
     <div class="hero-content">
+      <div class="hero-term">
+        <span class="term-prompt">~/portfolio</span>
+        <span class="term-sep">$</span>
+        <span class="term-cmd" data-i18n="hero.term">whoami</span><span class="term-blink"></span>
+      </div>
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        Currently at Zuci Systems, USA
+        <span data-i18n="hero.badge">Open to AI &amp; Analytics roles &middot; New Jersey, USA</span>
       </div>
-      <p class="hero-greeting">Hi, I'm</p>
-      <h1>Ismail Uthuman</h1>
+      <p class="hero-greeting" data-i18n="hero.greeting">Hi, I'm Ismail &mdash;</p>
+      <h1>
+        <span class="hero-accent" data-i18n="hero.title1">AI Analytics</span><br/>
+        <span data-i18n="hero.title2">Engineer.</span>
+      </h1>
       <p class="hero-tagline">
-        <span class="typewriter" data-words='["BI Analyst","Tableau Expert","Power BI Developer","Data Storyteller"]'></span>
+        <span data-i18n="hero.taglineLead">Building intelligent data systems with</span>
+        <span class="typewriter"
+              data-words='["LLMs","RAG pipelines","Claude API","Power BI","Tableau","AI agents"]'
+              data-words-en='["LLMs","RAG pipelines","Claude API","Power BI","Tableau","AI agents"]'
+              data-words-ta='["LLMs","RAG பைப்லைன்கள்","Claude API","Power BI","Tableau","AI முகவர்கள்"]'></span>
       </p>
-      <p class="hero-location">&#128205; New Jersey, USA</p>
+      <p class="hero-sub" data-i18n="hero.sub">5+ years turning data into decisions &mdash; now bringing GenAI into the BI workflow.</p>
       <div class="hero-btns">
-        <a href="#projects" class="btn">View My Work</a>
-        <a href="Ismail_resume.pdf" class="btn btn-outline" download>Download CV</a>
+        <a href="#projects" class="btn"><span data-i18n="hero.cta1">View my work</span> <span class="btn-arrow">&rarr;</span></a>
+        <a href="Ismail_resume.pdf" class="btn btn-outline" download data-i18n="hero.cta2">Download CV</a>
+        <a href="desktop.html" class="btn btn-desktop">
+          <span class="btn-desktop-icon" aria-hidden="true">&#9633;</span>
+          <span data-i18n="hero.cta3">Desktop view</span>
+        </a>
       </div>
     </div>
 
-    <div class="scroll-indicator">Scroll</div>
+    <div class="scroll-indicator" data-i18n="hero.scroll">Scroll</div>
   </section>
 
   <!-- ABOUT -->
   <section id="about">
     <div class="container">
-      <h2 class="section-title">About Me</h2>
+      <h2 class="section-title" data-i18n="about.title">About Me</h2>
       <div class="about-grid reveal">
         <div class="about-img">
           <img src="assets/images/1740663916182.jpeg" alt="Ismail Uthuman" />
         </div>
         <div class="about-text">
-          <p>
+          <p data-i18n="about.p1" data-i18n-html>
             Senior Business Intelligence Analyst with <strong>5+ years of experience</strong> delivering
             data-driven solutions that empower organizations to achieve their strategic goals.
           </p>
-          <p>
+          <p data-i18n="about.p2">
             Skilled in developing interactive dashboards, automating reporting workflows, and extracting
             actionable insights from complex datasets to support critical decision-making processes.
           </p>
           <div class="about-stats">
             <div class="stat">
               <span class="stat-num">5+</span>
-              <span class="stat-label">Years Experience</span>
+              <span class="stat-label" data-i18n="about.stat1">Years Experience</span>
             </div>
             <div class="stat">
               <span class="stat-num">15%</span>
-              <span class="stat-label">Efficiency Gains</span>
+              <span class="stat-label" data-i18n="about.stat2">Efficiency Gains</span>
             </div>
             <div class="stat">
               <span class="stat-num">25%</span>
-              <span class="stat-label">Faster Reports</span>
+              <span class="stat-label" data-i18n="about.stat3">Faster Reports</span>
             </div>
           </div>
         </div>
@@ -112,37 +132,93 @@
   <!-- SKILLS -->
   <section id="skills">
     <div class="container">
-      <h2 class="section-title">Skills</h2>
-      <div class="skills-categories">
+      <h2 class="section-title" data-i18n="skills.title">Skills</h2>
+      <p class="section-sub"><span class="mono"><span class="chip-icon">⎔</span> # Skills.json</span></p>
 
-        <div class="skill-group reveal">
-          <h3 class="skill-group-title">BI Tools</h3>
-          <div class="skills-grid">
-            <div class="skill-card">Tableau</div>
-            <div class="skill-card">Power BI</div>
-            <div class="skill-card">Tableau Prep</div>
-          </div>
+      <div class="sphere-wrap reveal">
+        <svg class="sphere-wire" id="sphere-wire" viewBox="-200 -200 400 400" aria-hidden="true">
+          <g id="sphere-wire-g" fill="none" stroke="#7C5CFF" stroke-width="0.4" stroke-linecap="round"></g>
+        </svg>
+        <div class="sphere" id="skill-sphere">
+          <!-- AI / GenAI -->
+          <span class="skill-node" data-cat="ai">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/anthropic/D97757" alt="Claude API"/>
+            <span class="sn-tip"><b>Claude API</b><i>Building AI assistants with prompt caching and tools.</i></span>
+          </span>
+          <span class="skill-node" data-cat="ai">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/langchain/1C3D2A" alt="LangChain"/>
+            <span class="sn-tip"><b>LangChain</b><i>RAG pipelines and agent orchestration.</i></span>
+          </span>
+          <span class="skill-node" data-cat="ai">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/openai/10A37F" alt="OpenAI / LLMs"/>
+            <span class="sn-tip"><b>LLMs &middot; OpenAI</b><i>GPT-based pipelines and evaluation.</i></span>
+          </span>
+          <span class="skill-node" data-cat="ai">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/huggingface/FFD21E" alt="Hugging Face"/>
+            <span class="sn-tip"><b>Hugging Face</b><i>Open models &amp; embeddings.</i></span>
+          </span>
+          <span class="skill-node" data-cat="ai">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/pinecone/000000" alt="Vector DB" style="background:#fff;border-radius:8px;padding:4px"/>
+            <span class="sn-tip"><b>Vector DBs</b><i>Pinecone for semantic search &amp; RAG retrieval.</i></span>
+          </span>
+          <span class="skill-node" data-cat="ai">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/json/F2C811" alt="Prompt Engineering"/>
+            <span class="sn-tip"><b>Prompt Engineering</b><i>Structured outputs and tool-use design.</i></span>
+          </span>
+
+          <!-- BI -->
+          <span class="skill-node" data-cat="bi">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/tableau/E97627" alt="Tableau"/>
+            <span class="sn-tip"><b>Tableau</b><i>5+ yrs &middot; dashboards that cut reporting 25%.</i></span>
+          </span>
+          <span class="skill-node" data-cat="bi">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/powerbi/F2C811" alt="Power BI"/>
+            <span class="sn-tip"><b>Power BI</b><i>DAX, RLS, healthcare dashboards in production.</i></span>
+          </span>
+          <span class="skill-node" data-cat="bi">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/looker/4285F4" alt="Looker"/>
+            <span class="sn-tip"><b>Looker</b><i>LookML and BigQuery modelling.</i></span>
+          </span>
+
+          <!-- Code / DB -->
+          <span class="skill-node" data-cat="code">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/python/3776AB" alt="Python"/>
+            <span class="sn-tip"><b>Python</b><i>Data pipelines, automation, AI scripting.</i></span>
+          </span>
+          <span class="skill-node" data-cat="code">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/mysql/4479A1" alt="SQL"/>
+            <span class="sn-tip"><b>SQL</b><i>Daily driver &mdash; joins, CTEs, window funcs.</i></span>
+          </span>
+          <span class="skill-node" data-cat="code">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/microsoftsqlserver/CC2927" alt="MS SQL Server"/>
+            <span class="sn-tip"><b>MS SQL Server</b><i>T-SQL, stored procs, enterprise scale.</i></span>
+          </span>
+          <span class="skill-node" data-cat="code">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL"/>
+            <span class="sn-tip"><b>PostgreSQL</b><i>Open-source RDBMS, JSONB, full-text search.</i></span>
+          </span>
+
+          <!-- Cloud / ETL -->
+          <span class="skill-node" data-cat="cloud">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/microsoftazure/0078D4" alt="Azure"/>
+            <span class="sn-tip"><b>Azure</b><i>ADF, Synapse, Azure SQL, certified Data Engineer.</i></span>
+          </span>
+          <span class="skill-node" data-cat="cloud">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/microsoft/F25022" alt="Microsoft Fabric"/>
+            <span class="sn-tip"><b>Microsoft Fabric</b><i>Unified analytics + lakehouse. Certified.</i></span>
+          </span>
+          <span class="skill-node" data-cat="cloud">
+            <img class="sn-icon" src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker"/>
+            <span class="sn-tip"><b>Docker</b><i>Containerised dev environments &amp; deploys.</i></span>
+          </span>
         </div>
-
-        <div class="skill-group reveal">
-          <h3 class="skill-group-title">Programming & Databases</h3>
-          <div class="skills-grid">
-            <div class="skill-card">SQL</div>
-            <div class="skill-card">Python</div>
-            <div class="skill-card">MS SQL Server</div>
-            <div class="skill-card">Azure SQL</div>
-          </div>
+        <div class="sphere-hint mono"><span class="hint-globe">🌐</span> drag to explore skills universe</div>
+        <div class="sphere-legend">
+          <span class="lg lg--ai" data-i18n="skills.ai">AI &amp; GenAI</span>
+          <span class="lg lg--bi" data-i18n="skills.bi">BI Tools</span>
+          <span class="lg lg--code" data-i18n="skills.prog">Programming &amp; Databases</span>
+          <span class="lg lg--cloud" data-i18n="skills.cloud">Cloud &amp; ETL</span>
         </div>
-
-        <div class="skill-group reveal">
-          <h3 class="skill-group-title">Cloud & ETL</h3>
-          <div class="skills-grid">
-            <div class="skill-card">Azure Data Factory</div>
-            <div class="skill-card">Microsoft Fabric</div>
-            <div class="skill-card">Tableau Server</div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -150,73 +226,98 @@
   <!-- EXPERIENCE -->
   <section id="experience">
     <div class="container">
-      <h2 class="section-title">Experience</h2>
+      <h2 class="section-title" data-i18n="exp.title">Experience</h2>
+      <p class="section-sub"><span class="mono">$ git log --oneline --graph career/</span></p>
       <div class="timeline">
 
         <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <h3>Senior Business Intelligence Analyst</h3>
-              <span class="timeline-date">Jun 2025 – Present</span>
+          <div class="timeline-content commit">
+            <div class="commit-meta">
+              <span class="c-key">commit</span> <span class="c-hash">8f3a2b1</span> <span class="c-branch">(HEAD &rarr; main, role/zuci-usa)</span>
             </div>
-            <p class="timeline-company">Zuci Systems, USA</p>
-            <ul>
-              <li>Designed and developed dashboards in Power BI using data extracted from patient insurance documents, incorporating member details, service codes, and diagnosis codes.</li>
-              <li>Collaborated with business stakeholders to define required fields and post-processing logic; performed validation testing for keyword accuracy and correct value inputs.</li>
-              <li>Created automated validation reports in Power BI to reduce manual day-to-day data reconciliation between source and target layers.</li>
-              <li>Reviewed generated reports and conducted accuracy validations to ensure data integrity and consistency between systems.</li>
+            <div class="commit-meta">
+              <span class="c-key">Author:</span> <span class="c-author">Ismail Uthuman</span> <span class="c-email">&lt;ismatechx@gmail.com&gt;</span>
+            </div>
+            <div class="commit-meta">
+              <span class="c-key">Date:</span>   <span class="c-date" data-i18n="exp.date1">Jun 2025 &rarr; Present</span>
+            </div>
+            <h3 class="commit-subject"><span class="c-type">feat</span><span class="c-paren">(</span><span class="c-scope">zuci-usa</span><span class="c-paren">):</span> <span data-i18n="exp.role1">Senior Business Intelligence Analyst</span></h3>
+            <ul class="commit-body">
+              <li data-i18n="exp.r1l1">Designed and developed dashboards in Power BI using data extracted from patient insurance documents, incorporating member details, service codes, and diagnosis codes.</li>
+              <li data-i18n="exp.r1l2">Collaborated with business stakeholders to define required fields and post-processing logic; performed validation testing for keyword accuracy and correct value inputs.</li>
+              <li data-i18n="exp.r1l3">Created automated validation reports in Power BI to reduce manual day-to-day data reconciliation between source and target layers.</li>
+              <li data-i18n="exp.r1l4">Reviewed generated reports and conducted accuracy validations to ensure data integrity and consistency between systems.</li>
             </ul>
+            <div class="commit-tech"><span class="c-plus">+</span> Power BI &middot; SQL &middot; Azure SQL</div>
           </div>
         </div>
 
         <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <h3>Senior Business Intelligence Analyst</h3>
-              <span class="timeline-date">Mar 2021 – May 2025</span>
+          <div class="timeline-content commit">
+            <div class="commit-meta">
+              <span class="c-key">commit</span> <span class="c-hash">c41d9e6</span> <span class="c-branch">(role/zuci-india)</span>
             </div>
-            <p class="timeline-company">Zuci Systems, India</p>
-            <ul>
-              <li>Developed Tableau dashboards that reduced report turnaround time by <strong>25%</strong> and improved decision speed.</li>
-              <li>Collaborated with cross-functional Supply Operation, Finance, and HPMT teams, contributing to a <strong>15% increase</strong> in operational efficiency.</li>
-              <li>Built Supplier KPI, Actual vs Forecast, and Capability Matrices, enabling sourcing teams to monitor vendor performance and delivery timeliness (OTIF).</li>
-              <li>Led a team of 2 to design and develop the ISMS Risk Dashboard in Power BI with RLS, delivering dashboards with risk trends, asset/threat analysis, and KPIs.</li>
-              <li>Worked on Supply Operations, Strategic Sourcing, Procurement, IT Spend Analysis and End-to-End Supply Operation (16 KPI &amp; Detailed View) dashboards.</li>
+            <div class="commit-meta">
+              <span class="c-key">Author:</span> <span class="c-author">Ismail Uthuman</span> <span class="c-email">&lt;ismatechx@gmail.com&gt;</span>
+            </div>
+            <div class="commit-meta">
+              <span class="c-key">Date:</span>   <span class="c-date" data-i18n="exp.date2">Mar 2021 &rarr; May 2025</span>
+            </div>
+            <h3 class="commit-subject"><span class="c-type">feat</span><span class="c-paren">(</span><span class="c-scope">zuci-india</span><span class="c-paren">):</span> <span data-i18n="exp.role1">Senior Business Intelligence Analyst</span></h3>
+            <ul class="commit-body">
+              <li data-i18n="exp.r2l1" data-i18n-html>Developed Tableau dashboards that reduced report turnaround time by <strong>25%</strong> and improved decision speed.</li>
+              <li data-i18n="exp.r2l2" data-i18n-html>Collaborated with cross-functional Supply Operation, Finance, and HPMT teams, contributing to a <strong>15% increase</strong> in operational efficiency.</li>
+              <li data-i18n="exp.r2l3">Built Supplier KPI, Actual vs Forecast, and Capability Matrices, enabling sourcing teams to monitor vendor performance and delivery timeliness (OTIF).</li>
+              <li data-i18n="exp.r2l4">Led a team of 2 to design and develop the ISMS Risk Dashboard in Power BI with RLS, delivering dashboards with risk trends, asset/threat analysis, and KPIs.</li>
+              <li data-i18n="exp.r2l5">Worked on Supply Operations, Strategic Sourcing, Procurement, IT Spend Analysis and End-to-End Supply Operation (16 KPI &amp; Detailed View) dashboards.</li>
             </ul>
+            <div class="commit-tech"><span class="c-plus">+</span> Tableau &middot; Power BI &middot; SQL &middot; Tableau Prep</div>
           </div>
         </div>
 
         <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <h3>Junior Consultant</h3>
-              <span class="timeline-date">Dec 2019 – Feb 2021</span>
+          <div class="timeline-content commit">
+            <div class="commit-meta">
+              <span class="c-key">commit</span> <span class="c-hash">a02f1d3</span> <span class="c-branch">(role/radiare)</span>
             </div>
-            <p class="timeline-company">Radiare Software Solution, India</p>
-            <ul>
-              <li>Built interactive Tableau dashboards for The Global Fund covering disease monitoring (HIV/TB/Malaria) and COVID-19 KPIs.</li>
-              <li>Developed dashboards for grant-making processes, financial performance, and customer service agent performance.</li>
-              <li>Configured dashboard-level security for multi-client publishing on Tableau Online.</li>
-              <li>Utilized Tableau Lineage Analytics with GraphQL to generate metadata usage reports.</li>
+            <div class="commit-meta">
+              <span class="c-key">Author:</span> <span class="c-author">Ismail Uthuman</span> <span class="c-email">&lt;ismatechx@gmail.com&gt;</span>
+            </div>
+            <div class="commit-meta">
+              <span class="c-key">Date:</span>   <span class="c-date" data-i18n="exp.date3">Dec 2019 &rarr; Feb 2021</span>
+            </div>
+            <h3 class="commit-subject"><span class="c-type">feat</span><span class="c-paren">(</span><span class="c-scope">radiare</span><span class="c-paren">):</span> <span data-i18n="exp.role3">Junior Consultant</span></h3>
+            <ul class="commit-body">
+              <li data-i18n="exp.r3l1">Built interactive Tableau dashboards for The Global Fund covering disease monitoring (HIV/TB/Malaria) and COVID-19 KPIs.</li>
+              <li data-i18n="exp.r3l2">Developed dashboards for grant-making processes, financial performance, and customer service agent performance.</li>
+              <li data-i18n="exp.r3l3">Configured dashboard-level security for multi-client publishing on Tableau Online.</li>
+              <li data-i18n="exp.r3l4">Utilized Tableau Lineage Analytics with GraphQL to generate metadata usage reports.</li>
             </ul>
+            <div class="commit-tech"><span class="c-plus">+</span> Tableau &middot; GraphQL &middot; Tableau Server</div>
           </div>
         </div>
 
         <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <h3>Software Trainee Intern</h3>
-              <span class="timeline-date">Sep 2019 – Nov 2019</span>
+          <div class="timeline-content commit">
+            <div class="commit-meta">
+              <span class="c-key">commit</span> <span class="c-hash">e1b3070</span> <span class="c-branch">(root, init)</span>
             </div>
-            <p class="timeline-company">Radiare Software Solution, India</p>
-            <ul>
-              <li>Assisted in data analysis, report building, and dashboard development for BI and IT service management projects.</li>
-              <li>Gained hands-on experience in Tableau and SQL; built bar charts, heat maps, filled maps, and scatter plots.</li>
+            <div class="commit-meta">
+              <span class="c-key">Author:</span> <span class="c-author">Ismail Uthuman</span> <span class="c-email">&lt;ismatechx@gmail.com&gt;</span>
+            </div>
+            <div class="commit-meta">
+              <span class="c-key">Date:</span>   <span class="c-date" data-i18n="exp.date4">Sep 2019 &rarr; Nov 2019</span>
+            </div>
+            <h3 class="commit-subject"><span class="c-type">init</span><span class="c-paren">(</span><span class="c-scope">radiare</span><span class="c-paren">):</span> <span data-i18n="exp.role4">Software Trainee Intern</span></h3>
+            <ul class="commit-body">
+              <li data-i18n="exp.r4l1">Assisted in data analysis, report building, and dashboard development for BI and IT service management projects.</li>
+              <li data-i18n="exp.r4l2">Gained hands-on experience in Tableau and SQL; built bar charts, heat maps, filled maps, and scatter plots.</li>
             </ul>
+            <div class="commit-tech"><span class="c-plus">+</span> Tableau &middot; SQL</div>
           </div>
         </div>
 
@@ -227,7 +328,7 @@
   <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
-      <h2 class="section-title">Key Projects</h2>
+      <h2 class="section-title" data-i18n="proj.title">Key Projects</h2>
       <div class="projects-grid">
 
         <div class="project-card reveal">
@@ -240,12 +341,14 @@
               <span class="project-tool">Tableau</span>
               <span class="project-badge">Enterprise</span>
             </div>
-            <h3>Supply Operations Dashboard</h3>
-            <p>End-to-end supply operation with 16 KPI views covering Strategic Sourcing, Procurement, and IT Spend Analysis at Zuci Systems.</p>
-            <div class="project-tags">
-              <span class="tag">Tableau</span>
-              <span class="tag">SQL</span>
-              <span class="tag">Tableau Prep</span>
+            <h3 data-i18n="proj.p1t">Supply Operations Dashboard</h3>
+            <p data-i18n="proj.p1d">End-to-end supply operation with 16 KPI views covering Strategic Sourcing, Procurement, and IT Spend Analysis at Zuci Systems.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="tag">Tableau</span>
+                <span class="tag">SQL</span>
+              </div>
+              <a href="case-supply-operations.html" class="btn btn-sm"><span data-i18n="proj.readCase">Read case study</span> →</a>
             </div>
           </div>
         </div>
@@ -260,8 +363,8 @@
               <span class="project-tool">Tableau</span>
               <span class="project-badge">Enterprise</span>
             </div>
-            <h3>Global Fund Health Dashboards</h3>
-            <p>Dashboards for tracking HIV/TB/Malaria disease monitoring, COVID-19 KPIs, grant-making and financial performance analytics.</p>
+            <h3 data-i18n="proj.p2t">Global Fund Health Dashboards</h3>
+            <p data-i18n="proj.p2d">Dashboards for tracking HIV/TB/Malaria disease monitoring, COVID-19 KPIs, grant-making and financial performance analytics.</p>
             <div class="project-tags">
               <span class="tag">Tableau</span>
               <span class="tag">GraphQL</span>
@@ -280,8 +383,8 @@
               <span class="project-tool">Power BI</span>
               <span class="project-badge">Enterprise</span>
             </div>
-            <h3>ISMS Risk Dashboard</h3>
-            <p>Power BI dashboard with RLS delivering risk trends, asset/threat analysis, and department KPIs for compliance monitoring.</p>
+            <h3 data-i18n="proj.p3t">ISMS Risk Dashboard</h3>
+            <p data-i18n="proj.p3d">Power BI dashboard with RLS delivering risk trends, asset/threat analysis, and department KPIs for compliance monitoring.</p>
             <div class="project-tags">
               <span class="tag">Power BI</span>
               <span class="tag">RLS</span>
@@ -300,15 +403,15 @@
               <span class="project-tool">Tableau Public</span>
               <span class="project-badge live-badge">Live</span>
             </div>
-            <h3>NYC Maven Taxi Challenge</h3>
-            <p>Interactive Tableau dashboard analyzing NYC taxi trip patterns, fare trends, pickup/drop-off hotspots, and time-based demand insights across New York City.</p>
+            <h3 data-i18n="proj.p4t">NYC Maven Taxi Challenge</h3>
+            <p data-i18n="proj.p4d">Interactive Tableau dashboard analyzing NYC taxi trip patterns, fare trends, pickup/drop-off hotspots, and time-based demand insights across New York City.</p>
             <div class="project-footer">
               <div class="project-tags">
                 <span class="tag">Tableau</span>
                 <span class="tag">Data Analysis</span>
                 <span class="tag">NYC Open Data</span>
               </div>
-              <button class="btn btn-sm tableau-modal-btn" data-viz="viz1771970012538">View Dashboard ↗</button>
+              <button class="btn btn-sm tableau-modal-btn" data-viz="viz1771970012538"><span data-i18n="proj.view">View Dashboard</span> ↗</button>
             </div>
           </div>
         </div>
@@ -323,15 +426,15 @@
               <span class="project-tool">Tableau Public</span>
               <span class="project-badge live-badge">Live</span>
             </div>
-            <h3>World Happiness Report 2022</h3>
-            <p>Tableau dashboard visualizing global happiness scores, key contributing factors, and country-level comparisons from the 2022 World Happiness Report.</p>
+            <h3 data-i18n="proj.p5t">World Happiness Report 2022</h3>
+            <p data-i18n="proj.p5d">Tableau dashboard visualizing global happiness scores, key contributing factors, and country-level comparisons from the 2022 World Happiness Report.</p>
             <div class="project-footer">
               <div class="project-tags">
                 <span class="tag">Tableau</span>
                 <span class="tag">Global Data</span>
                 <span class="tag">Analytics</span>
               </div>
-              <button class="btn btn-sm tableau-modal-btn" data-viz="viz1771976526694">View Dashboard ↗</button>
+              <button class="btn btn-sm tableau-modal-btn" data-viz="viz1771976526694"><span data-i18n="proj.view">View Dashboard</span> ↗</button>
             </div>
           </div>
         </div>
@@ -399,11 +502,11 @@
   <!-- CERTIFICATIONS -->
   <section id="certifications">
     <div class="container">
-      <h2 class="section-title">Certifications & Awards</h2>
+      <h2 class="section-title" data-i18n="cert.title">Certifications &amp; Awards</h2>
       <div class="cert-awards-grid">
 
         <div class="cert-col">
-          <h3 class="sub-heading">Certifications</h3>
+          <h3 class="sub-heading" data-i18n="cert.certs">Certifications</h3>
           <div class="cert-list">
             <div class="cert-card reveal">
               <div class="cert-icon">&#127941;</div>
@@ -437,7 +540,7 @@
         </div>
 
         <div class="cert-col">
-          <h3 class="sub-heading">Awards</h3>
+          <h3 class="sub-heading" data-i18n="cert.awards">Awards</h3>
           <div class="cert-list">
             <div class="cert-card reveal">
               <div class="cert-icon">&#11088;</div>
@@ -477,8 +580,8 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <h2 class="section-title">Contact</h2>
-      <p class="contact-sub">Interested in working together? Let's connect.</p>
+      <h2 class="section-title" data-i18n="contact.title">Contact</h2>
+      <p class="contact-sub" data-i18n="contact.sub">Interested in working together? Let's connect.</p>
       <div class="contact-grid">
         <div class="contact-info">
           <a href="mailto:isma96.u@gmail.com" class="contact-link">
@@ -494,11 +597,32 @@
             Tableau Public
           </a>
         </div>
-        <form class="contact-form">
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-          <button type="submit" class="btn">Send Message</button>
+        <form class="contact-form contact-form--json">
+          <div class="json-head">
+            <span class="json-dot json-dot--r"></span>
+            <span class="json-dot json-dot--y"></span>
+            <span class="json-dot json-dot--g"></span>
+            <span class="json-file">message.json</span>
+          </div>
+          <div class="json-body">
+            <div class="json-line"><span class="json-brace">{</span></div>
+            <div class="json-row">
+              <span class="json-indent">&nbsp;&nbsp;</span><span class="json-key">"name"</span><span class="json-colon">:</span>
+              <input type="text" name="name" class="json-input" placeholder="&quot;Your Name&quot;" data-i18n-placeholder="contact.name" required />
+              <span class="json-comma">,</span>
+            </div>
+            <div class="json-row">
+              <span class="json-indent">&nbsp;&nbsp;</span><span class="json-key">"email"</span><span class="json-colon">:</span>
+              <input type="email" name="email" class="json-input" placeholder="&quot;you@domain.com&quot;" data-i18n-placeholder="contact.email" required />
+              <span class="json-comma">,</span>
+            </div>
+            <div class="json-row json-row--ta">
+              <span class="json-indent">&nbsp;&nbsp;</span><span class="json-key">"message"</span><span class="json-colon">:</span>
+              <textarea name="message" rows="4" class="json-input json-input--ta" placeholder="&quot;Hi Ismail, ...&quot;" data-i18n-placeholder="contact.msg" required></textarea>
+            </div>
+            <div class="json-line"><span class="json-brace">}</span></div>
+          </div>
+          <button type="submit" class="btn json-send"><span class="mono">$&nbsp;send</span> <span data-i18n="contact.send">Send Message</span></button>
         </form>
       </div>
     </div>
@@ -506,13 +630,52 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2026 Ismail Uthuman. All rights reserved.</p>
+    <p data-i18n="footer.rights">&copy; 2026 Ismail Uthuman. All rights reserved.</p>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/isma96u/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://public.tableau.com/app/profile/ismail4056" target="_blank" rel="noopener">Tableau Public</a>
     </div>
   </footer>
 
+  <!-- ASK ISMAIL AI -->
+  <button class="ai-fab" id="ai-fab" aria-label="Ask Ismail">
+    <span class="ai-fab-spark"></span>
+    <span class="ai-fab-icon"><span class="mono">/</span></span>
+    <span class="ai-fab-label">Ask Ismail</span>
+  </button>
+
+  <aside class="ai-panel" id="ai-panel" role="dialog" aria-label="Ask Ismail AI">
+    <header class="ai-head">
+      <div class="ai-head-l">
+        <span class="ai-avatar">I</span>
+        <div>
+          <div class="ai-head-name">Ask Ismail <span class="ai-tag">AI</span></div>
+          <div class="ai-head-sub mono">claude-sonnet-4-6 · streaming</div>
+        </div>
+      </div>
+      <button class="ai-close" aria-label="Close">×</button>
+    </header>
+    <div class="ai-thread" id="ai-thread">
+      <div class="ai-msg ai-msg--bot">
+        <div class="ai-bubble">
+          Hi — I'm an AI version of Ismail trained on his resume and projects. Ask me about his BI work, AI/GenAI experience, or what he's looking for next.
+        </div>
+      </div>
+      <div class="ai-suggest" id="ai-suggest">
+        <button class="ai-chip">What's his strongest project?</button>
+        <button class="ai-chip">Tell me about his AI experience</button>
+        <button class="ai-chip">What roles is he open to?</button>
+        <button class="ai-chip">How do I contact him?</button>
+      </div>
+    </div>
+    <form class="ai-form" id="ai-form">
+      <input id="ai-input" type="text" placeholder="Ask anything about Ismail…" autocomplete="off" />
+      <button type="submit" class="ai-send" aria-label="Send">→</button>
+    </form>
+    <div class="ai-foot mono">Powered by Claude · responses are AI-generated</div>
+  </aside>
+
   <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/ask-ismail.js?v=1"></script>
 </body>
 </html>
