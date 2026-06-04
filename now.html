@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Now — Ismail Uthuman</title>
+  <meta name="description" content="What Ismail is currently working on, learning, building, and reading." />
+  <meta name="theme-color" content="#FFFFFF" />
+  <meta property="og:title" content="Now — Ismail Uthuman" />
+  <meta property="og:description" content="Current focus: AI Analytics, RAG pipelines, Power BI healthcare dashboards." />
+  <meta property="og:image" content="assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="assets/og.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=30" />
+  <style>
+    .now-hero { padding: 160px 28px 60px; }
+    .now-hero .container { max-width: 760px; }
+    .now-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: var(--text-dim);
+      margin-bottom: 28px;
+    }
+    .now-back:hover { color: var(--text); }
+    .now-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--grad-2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .now-title {
+      font-size: clamp(48px, 8vw, 92px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .now-title .it {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      background: linear-gradient(110deg, var(--grad-2), var(--grad-1) 60%, var(--grad-3));
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+    }
+    .now-updated {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+    }
+    .now-intro {
+      font-size: 18px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 640px;
+    }
+
+    .now-sec { padding: 40px 0; }
+    .now-sec .container { max-width: 760px; }
+    .now-h {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .now-h::before {
+      content: "/ ";
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      background: linear-gradient(120deg, var(--grad-2), var(--grad-1));
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+    }
+    .now-body p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.65;
+    }
+    .now-body strong { color: var(--text); font-weight: 600; }
+    .now-body ul {
+      padding-left: 22px;
+      color: var(--text-muted);
+      font-size: 15.5px;
+    }
+    .now-body li { margin-bottom: 6px; }
+
+    .now-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .now-card {
+      padding: 16px 18px;
+      border-radius: var(--r-md);
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .now-card .k {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--syn-hash);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+    .now-card .v {
+      font-size: 14.5px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .now-foot {
+      padding: 40px 0 120px;
+      text-align: center;
+    }
+    .now-foot p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <nav>
+      <div class="logo">Ismail.</div>
+      <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a class="lang-btn active" href="index.html" style="text-decoration:none;">← Home</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="now-hero">
+    <div class="container">
+      <a href="index.html" class="now-back">← back to home</a>
+      <div class="now-eyebrow">/now</div>
+      <h1 class="now-title">What I'm <span class="it">doing now.</span></h1>
+      <p class="now-updated">Last updated: <span id="now-date">June 2026</span></p>
+      <p class="now-intro">A snapshot of where my focus is right now &mdash; loosely inspired by Derek Sivers' <a href="https://nownownow.com/about" target="_blank" rel="noopener" style="color:var(--grad-2)">/now page idea</a>. Updated when things change.</p>
+    </div>
+  </section>
+
+  <section class="now-sec">
+    <div class="container">
+      <h2 class="now-h">Currently</h2>
+      <div class="now-body">
+        <p>Senior BI Analyst at <strong>Zuci Systems (USA)</strong>, building Power BI dashboards on top of patient insurance data &mdash; member details, service codes, diagnosis codes, with automated validation between source and target layers.</p>
+        <p>Outside the day job: bringing GenAI tooling into the BI workflow. I want every dashboard to come with a small LLM-based explainer agent that can reconcile cross-system numbers in plain English.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="now-sec">
+    <div class="container">
+      <h2 class="now-h">Learning</h2>
+      <div class="now-body">
+        <ul>
+          <li>Claude API patterns &mdash; prompt caching, tool use, structured outputs</li>
+          <li>RAG over enterprise BI metadata (Tableau Lineage + GraphQL extracts)</li>
+          <li>Evaluation: how to actually measure "is the LLM right" beyond vibes</li>
+          <li>Microsoft Fabric &mdash; lakehouse + semantic models</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="now-sec">
+    <div class="container">
+      <h2 class="now-h">Building</h2>
+      <div class="now-body">
+        <p>This portfolio is the experiment in progress &mdash; an AI Analytics positioning, a 3D skills sphere, a desktop-OS alternate view (ISMA OS), and an in-page chat (<strong>Ask Ismail AI</strong>) that runs on the Claude API.</p>
+        <p>Side project sketches: a small RAG playground that ingests a job description and explains how my experience maps to it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="now-sec">
+    <div class="container">
+      <h2 class="now-h">Reading &amp; watching</h2>
+      <div class="now-cards">
+        <div class="now-card">
+          <div class="k">Reading</div>
+          <div class="v">Anthropic engineering blog &middot; building agents with Claude</div>
+        </div>
+        <div class="now-card">
+          <div class="k">Reading</div>
+          <div class="v">Designing Data-Intensive Applications &mdash; Kleppmann (re-read)</div>
+        </div>
+        <div class="now-card">
+          <div class="k">Watching</div>
+          <div class="v">Talks from the LangChain / LlamaIndex conferences</div>
+        </div>
+        <div class="now-card">
+          <div class="k">Newsletter</div>
+          <div class="v">Latent Space, BI Engineer Weekly</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="now-sec">
+    <div class="container">
+      <h2 class="now-h">Open to</h2>
+      <div class="now-body">
+        <p><strong>AI Analytics</strong>, <strong>AI/ML Engineer</strong>, and senior <strong>BI Analyst</strong> roles &mdash; full-time, remote-friendly, US-based or with US sponsorship. I'm happiest at the seam between a real business problem and the data + AI tooling needed to solve it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="now-foot">
+    <div class="container">
+      <p>This page is dated &mdash; if it's been &gt; 3 months since "last updated", assume things have moved on.</p>
+      <a href="index.html#contact" class="btn">Get in touch <span class="btn-arrow">→</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Ismail Uthuman. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/isma96u/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://public.tableau.com/app/profile/ismail4056" target="_blank" rel="noopener">Tableau Public</a>
+    </div>
+  </footer>
+
+  <script>
+    // theme inherits from localStorage (set by main page)
+    (function () {
+      const t = (() => { try { return localStorage.getItem('theme'); } catch (_) { return null; } })();
+      if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+    // auto-display "Month YYYY" for last-updated (kept fresh)
+    document.getElementById('now-date').textContent = new Date().toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+  </script>
+</body>
+</html>

@@ -1,5 +1,29 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
+// ===== THEME (light / dark) =====
+(function () {
+  const KEY = 'theme';
+  const saved = (() => { try { return localStorage.getItem(KEY); } catch (_) { return null; } })();
+  const initial = (saved === 'dark' || saved === 'light')
+    ? saved
+    : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+  function apply(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem(KEY, t); } catch (_) {}
+  }
+  apply(initial);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme') || 'light';
+      apply(cur === 'dark' ? 'light' : 'dark');
+    });
+  });
+})();
+
 // ===== I18N (EN / TA) =====
 const I18N = {
   en: {
@@ -9,6 +33,7 @@ const I18N = {
     'nav.projects': 'Projects',
     'nav.certifications': 'Certifications',
     'nav.contact': 'Contact',
+    'nav.now': '/now',
 
     'hero.badge': 'Open to AI &amp; Analytics roles &middot; New Jersey, USA',
     'hero.greeting': "Hi, I'm Ismail —",
@@ -18,7 +43,7 @@ const I18N = {
     'hero.sub': '5+ years turning data into decisions — now bringing GenAI into the BI workflow.',
     'hero.cta1': 'View my work',
     'hero.cta2': 'Download CV',
-    'hero.cta3': 'Desktop view',
+    'hero.cta3': 'ISMA OS',
     'hero.scroll': 'Scroll',
     'hero.term': 'whoami',
 
@@ -93,6 +118,7 @@ const I18N = {
     'nav.projects': 'திட்டங்கள்',
     'nav.certifications': 'சான்றிதழ்கள்',
     'nav.contact': 'தொடர்பு',
+    'nav.now': '/now',
 
     'hero.badge': 'AI &amp; பகுப்பாய்வு பணிகளுக்குத் தயார் &middot; நியூ ஜெர்ஸி, அமெரிக்கா',
     'hero.greeting': 'வணக்கம், நான் இஸ்மாயில் —',
@@ -102,7 +128,7 @@ const I18N = {
     'hero.sub': '5+ ஆண்டுகள் தரவை முடிவுகளாக மாற்றிய அனுபவம் — இப்போது GenAI-ஐ BI பணியோட்டத்தில் இணைக்கிறேன்.',
     'hero.cta1': 'என் பணியைப் பார்க்க',
     'hero.cta2': 'CV பதிவிறக்கம்',
-    'hero.cta3': 'டெஸ்க்டாப் காட்சி',
+    'hero.cta3': 'ISMA OS',
     'hero.scroll': 'கீழே',
     'hero.term': 'whoami',
 
@@ -172,6 +198,29 @@ const I18N = {
   }
 };
 
+function applyTimeGreeting() {
+  const el = document.querySelector('.hero-greeting');
+  if (!el) return;
+  const h = new Date().getHours();
+  const isTa = document.documentElement.lang === 'ta';
+  let word;
+  if (isTa) {
+    word = h < 5  ? 'நள்ளிரவு வேலை'
+         : h < 12 ? 'காலை வணக்கம்'
+         : h < 17 ? 'மதிய வணக்கம்'
+         : h < 21 ? 'மாலை வணக்கம்'
+         : 'இரவு வணக்கம்';
+    el.textContent = `${word}, நான் இஸ்மாயில் —`;
+  } else {
+    word = h < 5  ? 'Burning the midnight oil'
+         : h < 12 ? 'Good morning'
+         : h < 17 ? 'Good afternoon'
+         : h < 21 ? 'Good evening'
+         : 'Working late';
+    el.textContent = `${word}, I'm Ismail —`;
+  }
+}
+
 function applyLang(lang) {
   const dict = I18N[lang] || I18N.en;
   document.documentElement.lang = lang;
@@ -206,7 +255,24 @@ function applyLang(lang) {
   });
 
   try { localStorage.setItem('lang', lang); } catch (_) {}
+
+  applyTimeGreeting();
 }
+
+// ===== TOAST =====
+function showToast(msg, kind) {
+  const el = document.getElementById('toast');
+  const msgEl = document.getElementById('toast-msg');
+  const icEl  = document.getElementById('toast-ic');
+  if (!el) return;
+  el.classList.toggle('toast--err', kind === 'err');
+  if (msgEl) msgEl.textContent = msg;
+  if (icEl)  icEl.textContent = kind === 'err' ? '!' : '✓';
+  el.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => el.classList.remove('show'), 3500);
+}
+window.showToast = showToast;
 
 const savedLang = (() => {
   try { return localStorage.getItem('lang'); } catch (_) { return null; }
@@ -371,7 +437,9 @@ if (typewriterEl) {
   });
 
   let rotX = 0.2, rotY = 0;
-  let velX = -0.0015, velY = 0.0025;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let velX = reducedMotion ? 0 : -0.0015;
+  let velY = reducedMotion ? 0 : 0.0025;
   let dragging = false;
   let lastX = 0, lastY = 0;
   let idleSince = performance.now();
@@ -454,7 +522,10 @@ if (typewriterEl) {
     sphere.classList.remove('dragging');
     idleSince = performance.now();
     // damp velocity toward gentle baseline
-    setTimeout(() => { velY = 0.0025; velX = -0.0015; }, 1500);
+    setTimeout(() => {
+      velY = reducedMotion ? 0 :  0.0025;
+      velX = reducedMotion ? 0 : -0.0015;
+    }, 1500);
   }
 
   sphere.addEventListener('mousedown', e => onDown(e.clientX, e.clientY));
@@ -463,6 +534,267 @@ if (typewriterEl) {
   sphere.addEventListener('touchstart', e => onDown(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
   window.addEventListener('touchmove', e => onMove(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
   window.addEventListener('touchend', onUp);
+})();
+
+// ===== PROJECT FILTER =====
+(function () {
+  const chips = document.querySelectorAll('.proj-chip');
+  const cards = document.querySelectorAll('.project-card[data-filter]');
+  if (!chips.length || !cards.length) return;
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const f = chip.dataset.filter;
+      chips.forEach(c => c.classList.toggle('active', c === chip));
+      cards.forEach(card => {
+        const tags = (card.dataset.filter || '').split(/\s+/);
+        const show = (f === 'all') || tags.includes(f);
+        card.classList.toggle('hidden', !show);
+      });
+    });
+  });
+})();
+
+// ===== COMMAND PALETTE (Cmd+K / Ctrl+K) =====
+(function () {
+  const root = document.getElementById('cmdk');
+  const input = document.getElementById('cmdk-input');
+  const list = document.getElementById('cmdk-list');
+  if (!root || !input || !list) return;
+
+  const ITEMS = [
+    // Sections
+    { g: 'Sections', t: 'About',              s: 'Background and role',          i: '👤', go: () => location.hash = '#about' },
+    { g: 'Sections', t: 'Skills',             s: '3D skills sphere',             i: '⚡', go: () => location.hash = '#skills' },
+    { g: 'Sections', t: 'Experience',         s: 'Git-log career timeline',      i: '📈', go: () => location.hash = '#experience' },
+    { g: 'Sections', t: 'Projects',           s: 'Featured BI / AI work',        i: '📁', go: () => location.hash = '#projects' },
+    { g: 'Sections', t: 'Certifications',     s: 'Microsoft, Tableau, Azure',    i: '🏆', go: () => location.hash = '#certifications' },
+    { g: 'Sections', t: 'Contact',            s: 'Send a message',               i: '✉',  go: () => location.hash = '#contact' },
+
+    // Projects
+    { g: 'Projects', t: 'Supply Operations Dashboard', s: 'Case study · Tableau · SQL',           i: '📦', go: () => location.href = 'case-supply-operations.html' },
+    { g: 'Projects', t: 'Global Fund Health Dashboards', s: 'Tableau · GraphQL',                    i: '🌐', go: () => location.hash = '#projects' },
+    { g: 'Projects', t: 'ISMS Risk Dashboard',         s: 'Power BI · RLS',                         i: '🛡',  go: () => location.hash = '#projects' },
+    { g: 'Projects', t: 'NYC Maven Taxi Challenge',    s: 'Tableau Public · live',                  i: '🚕', go: () => location.hash = '#projects' },
+    { g: 'Projects', t: 'World Happiness Report 2022', s: 'Tableau Public · live',                  i: '🌍', go: () => location.hash = '#projects' },
+
+    // Skills (quick jump)
+    { g: 'Skills', t: 'Claude API',     s: 'AI · prompt caching, tools',  i: '✦', go: () => location.hash = '#skills' },
+    { g: 'Skills', t: 'RAG',            s: 'AI · retrieval pipelines',    i: '🔗', go: () => location.hash = '#skills' },
+    { g: 'Skills', t: 'Tableau',        s: 'BI · 5+ yrs',                 i: '📊', go: () => location.hash = '#skills' },
+    { g: 'Skills', t: 'Power BI',       s: 'BI · DAX, RLS',               i: '📊', go: () => location.hash = '#skills' },
+    { g: 'Skills', t: 'Python',         s: 'Code · data + AI scripting',  i: '🐍', go: () => location.hash = '#skills' },
+    { g: 'Skills', t: 'SQL',            s: 'Code · daily driver',         i: '🗄', go: () => location.hash = '#skills' },
+    { g: 'Skills', t: 'Azure',          s: 'Cloud · ADF, Synapse',        i: '☁',  go: () => location.hash = '#skills' },
+
+    // Actions
+    { g: 'Actions', t: 'Ask Ismail AI',           s: 'Open the AI chat',                i: '🤖', go: () => document.getElementById('ai-fab')?.click() },
+    { g: 'Actions', t: 'Toggle light / dark',     s: 'Switch theme',                    i: '◐',  go: () => document.getElementById('theme-toggle')?.click() },
+    { g: 'Actions', t: 'Switch to Tamil',         s: 'த — Tamil interface',             i: 'த', go: () => document.querySelector('.lang-btn[data-lang="ta"]')?.click() },
+    { g: 'Actions', t: 'Switch to English',       s: 'EN — English interface',          i: 'EN', go: () => document.querySelector('.lang-btn[data-lang="en"]')?.click() },
+    { g: 'Actions', t: 'Download CV',             s: 'Ismail_resume.pdf',               i: '↓',  go: () => { const a = document.createElement('a'); a.href = 'Ismail_resume.pdf'; a.download = ''; a.click(); } },
+    { g: 'Actions', t: 'Open ISMA OS',            s: 'Desktop view',                    i: '▣',  go: () => location.href = 'desktop.html' },
+    { g: 'Actions', t: 'Show keyboard shortcuts', s: 'Press ? anytime',                 i: '⌨',  go: () => document.getElementById('kbd-help')?.classList.add('open') },
+
+    // Contact
+    { g: 'Contact', t: 'Email Ismail',     s: 'isma96.u@gmail.com',                              i: '✉', go: () => location.href = 'mailto:isma96.u@gmail.com' },
+    { g: 'Contact', t: 'LinkedIn',         s: 'linkedin.com/in/isma96u',                         i: 'in', go: () => window.open('https://www.linkedin.com/in/isma96u/', '_blank') },
+    { g: 'Contact', t: 'Tableau Public',   s: 'public.tableau.com/app/profile/ismail4056',       i: '📊', go: () => window.open('https://public.tableau.com/app/profile/ismail4056', '_blank') },
+  ];
+
+  let filtered = ITEMS.slice();
+  let cursor = 0;
+
+  function score(item, q) {
+    if (!q) return 1;
+    const hay = (item.t + ' ' + (item.s || '') + ' ' + item.g).toLowerCase();
+    const needle = q.toLowerCase();
+    if (hay.includes(needle)) return 10 - hay.indexOf(needle) / 20;
+    // letter-by-letter fuzzy
+    let i = 0;
+    for (const ch of needle) {
+      i = hay.indexOf(ch, i);
+      if (i === -1) return 0;
+      i++;
+    }
+    return 1;
+  }
+
+  function render() {
+    if (!filtered.length) {
+      list.innerHTML = '<div class="cmdk-empty">No matches — try another search</div>';
+      return;
+    }
+    let html = '';
+    let lastGroup = null;
+    filtered.forEach((it, idx) => {
+      if (it.g !== lastGroup) {
+        html += `<div class="cmdk-group-title">${it.g}</div>`;
+        lastGroup = it.g;
+      }
+      html += `<div class="cmdk-item ${idx === cursor ? 'active' : ''}" data-idx="${idx}">
+        <span class="cmdk-item-icon">${it.i}</span>
+        <div class="cmdk-item-body">
+          <div class="cmdk-item-title">${it.t}</div>
+          <div class="cmdk-item-sub">${it.s || ''}</div>
+        </div>
+      </div>`;
+    });
+    list.innerHTML = html;
+    // ensure active item visible
+    const act = list.querySelector('.cmdk-item.active');
+    if (act) act.scrollIntoView({ block: 'nearest' });
+  }
+
+  function setQuery(q) {
+    if (!q.trim()) { filtered = ITEMS.slice(); }
+    else {
+      filtered = ITEMS
+        .map(it => ({ it, s: score(it, q) }))
+        .filter(x => x.s > 0)
+        .sort((a, b) => b.s - a.s)
+        .map(x => x.it);
+    }
+    cursor = 0;
+    render();
+  }
+
+  function open() {
+    root.classList.add('open');
+    input.value = '';
+    setQuery('');
+    setTimeout(() => input.focus(), 30);
+  }
+  function close() { root.classList.remove('open'); }
+  function run() {
+    const it = filtered[cursor];
+    if (!it) return;
+    close();
+    setTimeout(() => it.go(), 60);
+  }
+
+  input.addEventListener('input', () => setQuery(input.value));
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') { cursor = Math.min(cursor + 1, filtered.length - 1); render(); e.preventDefault(); }
+    else if (e.key === 'ArrowUp') { cursor = Math.max(cursor - 1, 0); render(); e.preventDefault(); }
+    else if (e.key === 'Enter') { run(); e.preventDefault(); }
+    else if (e.key === 'Escape') { close(); }
+  });
+  list.addEventListener('click', (e) => {
+    const item = e.target.closest('.cmdk-item');
+    if (!item) return;
+    cursor = +item.dataset.idx;
+    run();
+  });
+  root.querySelector('.cmdk-overlay').addEventListener('click', close);
+
+  // global toggle
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      if (root.classList.contains('open')) close();
+      else open();
+    }
+  });
+})();
+
+// ===== CURSOR-FOLLOW BLOB =====
+(function () {
+  if (window.matchMedia('(hover: none)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const blob = document.createElement('div');
+  blob.className = 'cursor-blob';
+  document.body.appendChild(blob);
+
+  let tx = -9999, ty = -9999;   // target
+  let x = -9999, y = -9999;     // current (interpolated)
+  const HOVER_SEL = 'a, button, [role="button"], .skill-node, .project-card, .timeline-content, .cert-card, .stat, .lang-btn, .theme-toggle, .dock-btn, .app, .skill-card, .ai-chip, .tag, input, textarea';
+
+  document.addEventListener('mousemove', (e) => {
+    tx = e.clientX; ty = e.clientY;
+    blob.classList.add('show');
+  });
+  document.addEventListener('mouseleave', () => blob.classList.remove('show'));
+  document.addEventListener('mouseover', (e) => {
+    const isHover = e.target && e.target.closest && e.target.closest(HOVER_SEL);
+    blob.classList.toggle('hover', !!isHover);
+  });
+
+  function frame() {
+    x += (tx - x) * 0.22;
+    y += (ty - y) * 0.22;
+    blob.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+// ===== ANIMATED COUNTERS =====
+(function () {
+  const els = document.querySelectorAll('.stat-num');
+  if (!els.length) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function animate(el) {
+    const text = (el.textContent || '').trim();
+    const m = text.match(/^(\d+)(.*)$/);
+    if (!m) return;
+    const target = parseInt(m[1], 10);
+    const suffix = m[2] || '';
+    if (reduced) { el.textContent = target + suffix; return; }
+    let start = null;
+    const dur = 1400;
+    function step(t) {
+      if (start === null) start = t;
+      const p = Math.min((t - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.4 });
+  els.forEach(el => io.observe(el));
+})();
+
+// ===== KEYBOARD SHORTCUTS =====
+(function () {
+  const help = document.getElementById('kbd-help');
+  function isTyping() {
+    const a = document.activeElement;
+    return a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName);
+  }
+  let gPressed = 0;
+  document.addEventListener('keydown', (e) => {
+    if (isTyping()) {
+      if (e.key === 'Escape') a => document.activeElement?.blur();
+      return;
+    }
+    const k = e.key;
+    if (k === '/') { e.preventDefault(); document.getElementById('ai-fab')?.click(); return; }
+    if (k === '?') { e.preventDefault(); help?.classList.toggle('open'); return; }
+    if (k === 'Escape') { help?.classList.remove('open'); return; }
+    if (k === 't' || k === 'T') { document.getElementById('theme-toggle')?.click(); return; }
+    if (k === 'g' || k === 'G') {
+      gPressed = Date.now();
+      setTimeout(() => { gPressed = 0; }, 1200);
+      return;
+    }
+    if (gPressed && Date.now() - gPressed < 1200) {
+      const map = { p: '#projects', s: '#skills', e: '#experience', c: '#contact', a: '#about' };
+      const id = map[k.toLowerCase()];
+      if (id) {
+        gPressed = 0;
+        const el = document.querySelector(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+  help?.querySelector('.kbd-close')?.addEventListener('click', () => help.classList.remove('open'));
+  help?.addEventListener('click', e => { if (e.target === help) help.classList.remove('open'); });
 })();
 
 // ===== SCROLL REVEAL =====
@@ -524,6 +856,226 @@ document.querySelectorAll('.tableau-modal-overlay').forEach(el => {
 });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllTableauModals(); });
 
+// ===== TABLEAU GALLERY NAV (prev / next between modals) =====
+(function () {
+  const vizIds = Object.keys(vizModalMap);  // ordered list
+  const titles = ['NYC Maven Taxi Challenge', 'World Happiness Report 2022'];
+
+  function currentVizId() {
+    for (const vid of vizIds) {
+      const m = document.getElementById(vizModalMap[vid]);
+      if (m && m.classList.contains('open')) return vid;
+    }
+    return null;
+  }
+  function go(delta) {
+    const cur = currentVizId();
+    if (!cur) return;
+    const i = vizIds.indexOf(cur);
+    const next = vizIds[(i + delta + vizIds.length) % vizIds.length];
+    document.querySelectorAll('.tableau-modal').forEach(m => m.classList.remove('open'));
+    openTableauModal(next);
+    updateCounters();
+  }
+  function updateCounters() {
+    const cur = currentVizId();
+    if (!cur) return;
+    const i = vizIds.indexOf(cur);
+    const text = `${i + 1} / ${vizIds.length} · ${titles[i] || ''}`;
+    document.querySelectorAll('.tableau-modal.open .tableau-modal-counter').forEach(el => el.textContent = text);
+  }
+
+  document.querySelectorAll('.tableau-modal-nav--prev').forEach(b => b.addEventListener('click', () => go(-1)));
+  document.querySelectorAll('.tableau-modal-nav--next').forEach(b => b.addEventListener('click', () => go(+1)));
+
+  document.querySelectorAll('.tableau-modal-btn').forEach(b => b.addEventListener('click', () => setTimeout(updateCounters, 50)));
+  document.addEventListener('keydown', (e) => {
+    if (!currentVizId()) return;
+    if (e.key === 'ArrowRight') go(+1);
+    if (e.key === 'ArrowLeft')  go(-1);
+  });
+})();
+
+// ===== AUDIO INTRO (file if present, else Web Speech API) =====
+(function () {
+  const btn = document.getElementById('hero-audio');
+  if (!btn) return;
+
+  // 1) Try to use pre-recorded MP3s if they exist — drop a file at
+  //    assets/intro.mp3 (English) or assets/intro-ta.mp3 (Tamil) and the
+  //    button plays that instead of using browser speech synthesis.
+  let audioEn = null, audioTa = null;
+  function probeAudio(src) {
+    return new Promise(resolve => {
+      const a = new Audio(src);
+      a.preload = 'auto';
+      a.addEventListener('canplaythrough', () => resolve(a), { once: true });
+      a.addEventListener('error',          () => resolve(null), { once: true });
+      a.load();
+    });
+  }
+  Promise.all([probeAudio('assets/intro.mp3'), probeAudio('assets/intro-ta.mp3')])
+    .then(([en, ta]) => { audioEn = en; audioTa = ta; });
+
+  if (!('speechSynthesis' in window) && !audioEn) {
+    // give it a moment to see if the file probe succeeds
+    setTimeout(() => { if (!audioEn) btn.remove(); }, 1500);
+  }
+  const SCRIPT_EN = "Hi, I'm Ismail. Senior B-I analyst with five plus years, now bringing GenAI into the B-I workflow. Take a look around — and feel free to ask Ismail A-I anything.";
+  const SCRIPT_TA = "வணக்கம், நான் இஸ்மாயில். மூத்த B-I பகுப்பாய்வாளர். GenAI கருவிகளை வேலையில் இணைக்கிறேன். தளத்தைப் பார்க்கவும், ஏதேனும் கேள்வி இருந்தால் Ask Ismail A-I-யைப் பயன்படுத்துங்கள்.";
+
+  // Preferred voices in order — picks the first one available in the user's browser.
+  // These names cover Chrome/Edge (Google + Microsoft), Safari (Apple), and Firefox fallbacks.
+  const VOICE_PREFS = {
+    en: [
+      // Microsoft Edge premium voices (best on Windows / Edge)
+      'Microsoft Aria Online (Natural)', 'Microsoft Guy Online (Natural)',
+      'Microsoft Jenny Online (Natural)', 'Microsoft Ryan Online (Natural)',
+      // Google Chrome
+      'Google UK English Male', 'Google US English',
+      // Apple
+      'Daniel', 'Samantha', 'Karen', 'Moira', 'Tessa',
+      // generic
+      'English (United Kingdom)', 'English (United States)',
+    ],
+    ta: [
+      'Microsoft Valluvar Online (Natural)',
+      'Google தமிழ்', 'Tamil (India)',
+    ],
+  };
+
+  let voices = [];
+  function loadVoices() {
+    voices = speechSynthesis.getVoices();
+  }
+  loadVoices();
+  // voices load async in Chrome
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+  }
+
+  function pickVoice(langKey) {
+    if (!voices.length) voices = speechSynthesis.getVoices();
+    const prefs = VOICE_PREFS[langKey] || [];
+    for (const name of prefs) {
+      const v = voices.find(v => v.name === name);
+      if (v) return v;
+    }
+    // fallback: any voice matching the lang code
+    const langCode = langKey === 'ta' ? 'ta' : 'en';
+    return voices.find(v => v.lang && v.lang.toLowerCase().startsWith(langCode)) || null;
+  }
+
+  let voiceIndex = 0;  // for cycling via right-click
+  let speaking = false;
+
+  function speak(opts = {}) {
+    const isTa = document.documentElement.lang === 'ta';
+    const langKey = isTa ? 'ta' : 'en';
+    const text = isTa ? SCRIPT_TA : SCRIPT_EN;
+    const u = new SpeechSynthesisUtterance(text);
+
+    let voice = pickVoice(langKey);
+    if (opts.cycle) {
+      // cycle through voices of matching language
+      const langCode = isTa ? 'ta' : 'en';
+      const matches = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith(langCode));
+      if (matches.length) {
+        voiceIndex = (voiceIndex + 1) % matches.length;
+        voice = matches[voiceIndex];
+        window.showToast?.(`Voice: ${voice.name}`);
+      }
+    }
+    if (voice) { u.voice = voice; u.lang = voice.lang; }
+    else { u.lang = isTa ? 'ta-IN' : 'en-US'; }
+
+    u.rate  = 0.95;   // slightly slower = warmer
+    u.pitch = 1.0;
+    u.volume = 1.0;
+    u.onstart = () => { speaking = true;  btn.classList.add('playing');    btn.querySelector('.hero-audio-ic').textContent = '■'; };
+    u.onend   = () => { speaking = false; btn.classList.remove('playing'); btn.querySelector('.hero-audio-ic').textContent = '▶'; };
+    u.onerror = u.onend;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+  }
+
+  let currentAudio = null;
+  function playFile(a) {
+    if (!a) return false;
+    currentAudio = a;
+    a.currentTime = 0;
+    speaking = true;
+    btn.classList.add('playing');
+    btn.querySelector('.hero-audio-ic').textContent = '■';
+    a.onended = a.onpause = () => {
+      speaking = false;
+      btn.classList.remove('playing');
+      btn.querySelector('.hero-audio-ic').textContent = '▶';
+      currentAudio = null;
+    };
+    a.play().catch(() => { a.onpause(); });
+    return true;
+  }
+
+  btn.addEventListener('click', () => {
+    if (speaking) {
+      if (currentAudio) { currentAudio.pause(); }
+      else { speechSynthesis.cancel(); }
+      return;
+    }
+    const isTa = document.documentElement.lang === 'ta';
+    const file = isTa ? audioTa : audioEn;
+    if (playFile(file)) return;
+    if ('speechSynthesis' in window) speak();
+  });
+  // right-click cycles to next synthesised voice (file-mode ignores this)
+  btn.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    if (currentAudio || (audioEn && document.documentElement.lang !== 'ta') || (audioTa && document.documentElement.lang === 'ta')) {
+      window.showToast?.("Pre-recorded audio in use — no voice cycling.");
+      return;
+    }
+    if ('speechSynthesis' in window) speak({ cycle: true });
+  });
+
+  btn.title = "Click to play · right-click to cycle voice";
+})();
+
+// ===== NEWSLETTER =====
+const nlForm = document.getElementById('nl-form');
+nlForm?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = nlForm.email.value.trim();
+  if (!email) return;
+  const btn = nlForm.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  const orig = btn.textContent;
+  btn.textContent = 'Subscribing…';
+
+  // try `newsletter_subscribers`; fall back to logging via contact_submissions
+  const tryTable = async (name, row) => {
+    return supabase.from(name).insert([row]);
+  };
+  let res = await tryTable('newsletter_subscribers', { email });
+  if (res.error) {
+    // fallback: write into contact_submissions with a tag
+    res = await tryTable('contact_submissions', {
+      name: 'Newsletter signup',
+      email,
+      message: '(quarterly notes subscription)',
+    });
+  }
+  btn.disabled = false;
+  btn.textContent = orig;
+  if (res.error) {
+    window.showToast?.("Couldn't subscribe right now — try again later.", 'err');
+    console.error(res.error);
+  } else {
+    nlForm.reset();
+    window.showToast?.("Subscribed — you're on the list.");
+  }
+});
+
 // ===== CONTACT FORM + SUPABASE =====
 const supabase = createClient(
   'https://rubhvlgacxjncohamfnz.supabase.co',
@@ -545,16 +1097,14 @@ form.addEventListener('submit', async (e) => {
     .from('contact_submissions')
     .insert([{ name, email, message }]);
 
+  btn.disabled = false;
+  btn.textContent = 'Send Message';
+
   if (error) {
-    btn.textContent = 'Failed — try again';
-    btn.disabled = false;
+    showToast("Couldn't send — please try again or email me directly.", 'err');
     console.error(error);
   } else {
-    btn.textContent = 'Sent!';
+    showToast("Sent — I'll get back to you soon.");
     form.reset();
-    setTimeout(() => {
-      btn.textContent = 'Send Message';
-      btn.disabled = false;
-    }, 3000);
   }
 });

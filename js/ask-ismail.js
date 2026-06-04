@@ -52,7 +52,12 @@ function append(role, text, opts = {}) {
 
 function setLoading(bubble) {
   bubble.classList.add('ai-bubble--loading');
-  bubble.innerHTML = '<span class="ai-dot"></span><span class="ai-dot"></span><span class="ai-dot"></span>';
+  bubble.innerHTML = `
+    <div class="ai-skel">
+      <span class="ai-skel-bar" style="width:78%"></span>
+      <span class="ai-skel-bar" style="width:92%"></span>
+      <span class="ai-skel-bar" style="width:54%"></span>
+    </div>`;
 }
 
 function renderMarkdownLite(text) {

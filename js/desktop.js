@@ -326,7 +326,7 @@ const COMMANDS = {
 
   whoami:  () => `ismail
 <span class="t-dim">uid=1000(ismail) gid=1000(ismail) groups=ai-engineers,bi-analysts,zuci-systems</span>`,
-  uname:   () => `IsmailOS 1.0.0 ismail-portfolio #1 SMP PREEMPT x86_64 GNU/Linux
+  uname:   () => `ISMA-OS 1.0.0 isma-portfolio #1 SMP PREEMPT x86_64 GNU/Linux
 <span class="t-dim">build: dark-glass · mesh: violet/cyan/pink · powered by: Claude API</span>`,
   ps:      () => `<span class="t-dim">  PID TTY          TIME CMD</span>
  1001 pts/0    00:00:01 portfolio
@@ -368,6 +368,34 @@ tmpfs           ∞     ∞      ∞    -- /ideas`,
   pwd:     () => `/home/ismail${cwd.length ? '/' + cwd.join('/') : ''}`,
   clear:   () => '__clear__',
   exit:    () => '__exit__',
+
+  // ── easter eggs ──
+  coffee:  () => `<span class="t-info">brewing... ☕</span>
+<span class="t-dim">[#####.....] 50%   never enough</span>`,
+  '42':    () => `<span class="t-info">The answer to life, the universe, and everything.</span>
+<span class="t-dim">Question still pending.</span>`,
+  konami:  () => `<span class="t-ok">↑↑↓↓←→←→BA</span>
+<span class="t-info">+30 dashboards unlocked.</span>`,
+  matrix:  () => `<span class="t-ok">wake up, ismail...</span>
+<span class="t-dim">the data has you.</span>`,
+  fortune: () => {
+    const lines = [
+      'Premature optimization is the root of all dashboards.',
+      'The best dashboard is the one nobody has to ask about.',
+      'In data we trust — all others bring evidence.',
+      'A KPI a day keeps the stakeholder away.',
+      'If your chart needs a legend, your chart needs a rewrite.',
+      'SELECT * FROM problems WHERE root_cause IS NOT NULL;',
+    ];
+    return `<span class="t-info">${lines[Math.floor(Math.random() * lines.length)]}</span>`;
+  },
+  banner:  () => `<span class="t-info">
+  ___  ____  __  __    _      ___  ____
+ |_ _|/ ___||  \\/  |  / \\    / _ \\/ ___|
+  | | \\___ \\| |\\/| | / _ \\  | | | \\___ \\
+  | |  ___) | |  | |/ ___ \\ | |_| |___) |
+ |___||____/|_|  |_/_/   \\_\\ \\___/|____/
+</span>`,
 };
 
 function historyHTML() {
@@ -472,6 +500,28 @@ function runCmd(raw) {
       dir[clean + '/'] = {};
       return;
     }
+    case 'sudo': {
+      const rest = args.join(' ');
+      if (!rest) return printLine(`<span class="t-err">usage: sudo &lt;command&gt;</span>`);
+      if (/coffee/i.test(rest))    return printLine(`<span class="t-ok">privilege escalation granted: ☕ doubled.</span>`);
+      if (/rm.*rf/i.test(rest))    return printLine(`<span class="t-err">refused. seriously.</span>`);
+      if (/make.*sandwich/i.test(rest)) return printLine(`<span class="t-ok">okay.</span>`);
+      return printLine(`<span class="t-err">[sudo] password for ismail: </span><span class="t-dim">(nice try)</span>`);
+    }
+    case 'cowsay': {
+      const msg = (args.join(' ') || 'moo').slice(0, 60);
+      const bar = '_'.repeat(msg.length + 2);
+      const bot = '-'.repeat(msg.length + 2);
+      printLine(`<span class="t-ok"> ${bar}
+&lt; ${escape(msg)} &gt;
+ ${bot}
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||</span>`);
+      return;
+    }
     case 'open': {
       const app = args[0];
       if (!app) return printLine('<span class="t-err">open: missing app name</span>');
@@ -495,8 +545,8 @@ function escape(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<'
 
 function openTerminal() {
   if (termOut && termOut.children.length === 0) {
-    printLine(`<span class="t-info">Welcome to Ismail's Professional Terminal!</span>
-<span class="t-info">IsmailOS 1.0 LTS - Type 'help' for available commands</span>
+    printLine(`<span class="t-info">Welcome to ISMA OS Terminal!</span>
+<span class="t-info">ISMA OS 1.0 LTS - Type 'help' for available commands</span>
 <span class="t-dim">Senior BI Analyst &amp; AI Engineer</span>
 `);
   }

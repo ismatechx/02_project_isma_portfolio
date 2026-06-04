@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ismail OS — Desktop View</title>
+  <title>ISMA OS — Desktop View</title>
   <meta name="description" content="Desktop-style view of Ismail Uthuman's portfolio — apps, multi-window, terminal." />
   <meta name="theme-color" content="#07080C" />
-  <meta property="og:title" content="Ismail OS — Desktop View" />
+  <meta property="og:title" content="ISMA OS — Desktop View" />
   <meta property="og:description" content="An interactive desktop-style portfolio with apps, multi-window, and a virtual terminal." />
   <meta property="og:image" content="assets/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=12" />
-  <link rel="stylesheet" href="css/desktop.css?v=3" />
+  <link rel="stylesheet" href="css/style.css?v=23" />
+  <link rel="stylesheet" href="css/desktop.css?v=5" />
 </head>
 <body class="os">
 
@@ -35,16 +35,22 @@
   <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-left">
-      <span class="tb-logo">Ismail<span class="tb-dot">.</span>os</span>
-      <span class="tb-sep">/</span>
-      <span class="tb-active" id="tb-active">Desktop</span>
+      <span class="tb-logo">ISMA OS</span>
+      <span class="tb-active tb-menu tb-menu--bold" id="tb-active">Desktop</span>
+      <span class="tb-menus">
+        <span class="tb-menu">File</span>
+        <span class="tb-menu">View</span>
+        <span class="tb-menu">Window</span>
+        <span class="tb-menu">Help</span>
+      </span>
     </div>
     <div class="topbar-right">
-      <span class="tb-item mono" id="tb-clock">--:--</span>
+      <span class="tb-item" title="Battery">100%</span>
       <span class="tb-item tb-icons">
         <span class="tb-dot tb-dot--g" title="Online"></span>
-        <span class="mono">EN</span>
+        <span>Wi-Fi</span>
       </span>
+      <span class="tb-item" id="tb-clock">--:--</span>
       <a class="tb-item tb-back" href="index.html">← website view</a>
     </div>
   </div>
@@ -341,6 +347,6 @@
 
   </div>
 
-  <script src="js/desktop.js?v=3"></script>
+  <script src="js/desktop.js?v=4"></script>
 </body>
 </html>

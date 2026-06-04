@@ -23,9 +23,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=21" />
+  <link rel="stylesheet" href="css/style.css?v=30" />
 </head>
 <body>
+
+  <!-- DECORATIVE COLOR BLOCKS -->
+  <div class="color-blocks" aria-hidden="true">
+    <span class="cb cb--lime cb--rect"     style="top:14%; left:6%;  transform:rotate(-12deg)"></span>
+    <span class="cb cb--magenta cb--sq"    style="top:22%; right:8%; transform:rotate(15deg)"></span>
+    <span class="cb cb--cyan cb--bar"      style="top:46%; left:4%;  transform:rotate(20deg)"></span>
+    <span class="cb cb--yellow cb--tall"   style="top:60%; right:5%; transform:rotate(-8deg)"></span>
+    <span class="cb cb--violet cb--sq"     style="top:78%; left:10%; transform:rotate(25deg)"></span>
+    <span class="cb cb--tri cb--magenta"   style="top:8%;  right:18%;transform:rotate(20deg)"></span>
+    <span class="cb cb--tri cb--cyan"      style="top:90%; left:50%; transform:rotate(-30deg)"></span>
+    <span class="cb cb--lime cb--bar"      style="top:32%; right:14%;transform:rotate(-18deg)"></span>
+    <span class="cb cb--yellow cb--sq"     style="top:50%; right:20%;transform:rotate(30deg)"></span>
+    <span class="cb cb--magenta cb--rect"  style="top:70%; right:10%;transform:rotate(8deg)"></span>
+  </div>
 
   <!-- NAV -->
   <header>
@@ -38,8 +52,18 @@
         <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
         <li><a href="#certifications" data-i18n="nav.certifications">Certifications</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="now.html" data-i18n="nav.now">/now</a></li>
       </ul>
       <div class="nav-right">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="theme-ic theme-ic--sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <svg class="theme-ic theme-ic--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
         <div class="lang-toggle" role="group" aria-label="Language">
           <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
           <button type="button" class="lang-btn" data-lang="ta" aria-pressed="false" lang="ta">த</button>
@@ -62,6 +86,10 @@
         <span class="term-prompt">~/portfolio</span>
         <span class="term-sep">$</span>
         <span class="term-cmd" data-i18n="hero.term">whoami</span><span class="term-blink"></span>
+        <button type="button" class="hero-audio" id="hero-audio" aria-label="Hear a short intro">
+          <span class="hero-audio-ic">▶</span>
+          <span class="hero-audio-label">intro</span>
+        </button>
       </div>
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
@@ -85,7 +113,7 @@
         <a href="Ismail_resume.pdf" class="btn btn-outline" download data-i18n="hero.cta2">Download CV</a>
         <a href="desktop.html" class="btn btn-desktop">
           <span class="btn-desktop-icon" aria-hidden="true">&#9633;</span>
-          <span data-i18n="hero.cta3">Desktop view</span>
+          <span data-i18n="hero.cta3">ISMA OS</span>
         </a>
       </div>
     </div>
@@ -137,7 +165,7 @@
 
       <div class="sphere-wrap reveal">
         <svg class="sphere-wire" id="sphere-wire" viewBox="-200 -200 400 400" aria-hidden="true">
-          <g id="sphere-wire-g" fill="none" stroke="#7C5CFF" stroke-width="0.4" stroke-linecap="round"></g>
+          <g id="sphere-wire-g" fill="none" stroke="#6E48FF" stroke-width="1.3" stroke-linecap="round"></g>
         </svg>
         <div class="sphere" id="skill-sphere">
           <!-- AI / GenAI -->
@@ -329,9 +357,16 @@
   <section id="projects">
     <div class="container">
       <h2 class="section-title" data-i18n="proj.title">Key Projects</h2>
+      <div class="proj-filters" role="tablist" aria-label="Filter projects">
+        <button class="proj-chip active" data-filter="all">All</button>
+        <button class="proj-chip" data-filter="tableau">Tableau</button>
+        <button class="proj-chip" data-filter="powerbi">Power BI</button>
+        <button class="proj-chip" data-filter="sql">SQL</button>
+        <button class="proj-chip" data-filter="live">Live</button>
+      </div>
       <div class="projects-grid">
 
-        <div class="project-card reveal">
+        <div class="project-card reveal" data-filter="tableau sql">
           <div class="project-banner project-banner--supply">
             <span class="project-num">01</span>
             <span class="project-icon">📦</span>
@@ -353,7 +388,7 @@
           </div>
         </div>
 
-        <div class="project-card reveal">
+        <div class="project-card reveal" data-filter="tableau">
           <div class="project-banner project-banner--health">
             <span class="project-num">02</span>
             <span class="project-icon">🌐</span>
@@ -373,7 +408,7 @@
           </div>
         </div>
 
-        <div class="project-card reveal">
+        <div class="project-card reveal" data-filter="powerbi sql">
           <div class="project-banner project-banner--cx">
             <span class="project-num">03</span>
             <span class="project-icon">🛡️</span>
@@ -393,7 +428,7 @@
           </div>
         </div>
 
-        <div class="project-card taxi-card reveal">
+        <div class="project-card taxi-card reveal" data-filter="tableau live">
           <div class="project-banner project-banner--taxi">
             <span class="project-num">04</span>
             <span class="project-icon">🚕</span>
@@ -416,7 +451,7 @@
           </div>
         </div>
 
-        <div class="project-card reveal">
+        <div class="project-card reveal" data-filter="tableau live">
           <div class="project-banner project-banner--happiness">
             <span class="project-num">05</span>
             <span class="project-icon">🌍</span>
@@ -448,6 +483,9 @@
     <div class="tableau-modal-overlay"></div>
     <div class="tableau-modal-box">
       <button class="tableau-modal-close" aria-label="Close">&times;</button>
+      <button class="tableau-modal-nav tableau-modal-nav--prev" aria-label="Previous dashboard">‹</button>
+      <button class="tableau-modal-nav tableau-modal-nav--next" aria-label="Next dashboard">›</button>
+      <div class="tableau-modal-counter mono"></div>
       <div class="tableau-modal-body">
         <div class='tableauPlaceholder' id='viz1771970012538' style='position:relative'>
           <noscript><a href='#'><img alt='Trip Analysis' src='https://public.tableau.com/static/images/NY/NYC_MavenTaxiChallenge/TripAnalysis/1_rss.png' style='border:none' /></a></noscript>
@@ -476,6 +514,9 @@
     <div class="tableau-modal-overlay"></div>
     <div class="tableau-modal-box">
       <button class="tableau-modal-close" aria-label="Close">&times;</button>
+      <button class="tableau-modal-nav tableau-modal-nav--prev" aria-label="Previous dashboard">‹</button>
+      <button class="tableau-modal-nav tableau-modal-nav--next" aria-label="Next dashboard">›</button>
+      <div class="tableau-modal-counter mono"></div>
       <div class="tableau-modal-body">
         <div class='tableauPlaceholder' id='viz1771976526694' style='position:relative'>
           <noscript><a href='#'><img alt='World Happiness Report 2022' src='https://public.tableau.com/static/images/Wo/WorldHappinessReport2022_16608085016760/WorldHappinessReport2022/1_rss.png' style='border:none' /></a></noscript>
@@ -596,6 +637,10 @@
             <span class="contact-icon">&#128202;</span>
             Tableau Public
           </a>
+          <a href="https://cal.com/ismatechx" class="contact-link contact-link--book" target="_blank" rel="noopener">
+            <span class="contact-icon">&#128197;</span>
+            <span>Book a 15-min intro chat<span class="contact-sub-line mono">cal.com/ismatechx</span></span>
+          </a>
         </div>
         <form class="contact-form contact-form--json">
           <div class="json-head">
@@ -628,14 +673,73 @@
     </div>
   </section>
 
+  <!-- NEWSLETTER -->
+  <section id="newsletter">
+    <div class="container nl-wrap">
+      <div class="nl-text">
+        <h3 class="nl-h">Quarterly notes &mdash; <span class="nl-it">no spam.</span></h3>
+        <p class="nl-sub">One short email every 3 months on what I shipped, learned, and read in AI + BI. Unsubscribe anytime.</p>
+      </div>
+      <form class="nl-form" id="nl-form">
+        <input type="email" name="email" placeholder="you@domain.com" required />
+        <button type="submit" class="btn">Subscribe →</button>
+      </form>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <p data-i18n="footer.rights">&copy; 2026 Ismail Uthuman. All rights reserved.</p>
     <div class="social-links">
+      <a href="now.html">/now</a>
       <a href="https://www.linkedin.com/in/isma96u/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://public.tableau.com/app/profile/ismail4056" target="_blank" rel="noopener">Tableau Public</a>
     </div>
   </footer>
+
+  <!-- COMMAND PALETTE (Cmd+K) -->
+  <div class="cmdk" id="cmdk" role="dialog" aria-label="Command palette">
+    <div class="cmdk-overlay"></div>
+    <div class="cmdk-box">
+      <div class="cmdk-input-row">
+        <span class="cmdk-icon">⌕</span>
+        <input id="cmdk-input" type="text" placeholder="Search projects, skills, sections… or type a command" autocomplete="off" spellcheck="false" />
+        <kbd class="cmdk-esc">esc</kbd>
+      </div>
+      <div class="cmdk-list" id="cmdk-list"></div>
+      <div class="cmdk-foot mono">
+        <span><kbd>↑↓</kbd> navigate</span>
+        <span><kbd>↵</kbd> select</span>
+        <span><kbd>⌘K</kbd> · <kbd>Ctrl+K</kbd> to toggle</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="toast-ic" id="toast-ic">✓</span>
+    <span id="toast-msg">Sent — I'll get back to you soon.</span>
+  </div>
+
+  <!-- KEYBOARD SHORTCUTS OVERLAY -->
+  <div class="kbd-help" id="kbd-help" role="dialog" aria-label="Keyboard shortcuts">
+    <div class="kbd-help-box">
+      <div class="kbd-head">
+        <h3>Keyboard shortcuts</h3>
+        <button class="kbd-close" aria-label="Close">×</button>
+      </div>
+      <dl class="kbd-list">
+        <div><dt><kbd>/</kbd></dt><dd>Open Ask Ismail</dd></div>
+        <div><dt><kbd>t</kbd></dt><dd>Toggle light / dark</dd></div>
+        <div><dt><kbd>g</kbd> then <kbd>p</kbd></dt><dd>Jump to Projects</dd></div>
+        <div><dt><kbd>g</kbd> then <kbd>s</kbd></dt><dd>Jump to Skills</dd></div>
+        <div><dt><kbd>g</kbd> then <kbd>e</kbd></dt><dd>Jump to Experience</dd></div>
+        <div><dt><kbd>g</kbd> then <kbd>c</kbd></dt><dd>Jump to Contact</dd></div>
+        <div><dt><kbd>?</kbd></dt><dd>Show this help</dd></div>
+        <div><dt><kbd>Esc</kbd></dt><dd>Close any panel</dd></div>
+      </dl>
+    </div>
+  </div>
 
   <!-- ASK ISMAIL AI -->
   <button class="ai-fab" id="ai-fab" aria-label="Ask Ismail">
